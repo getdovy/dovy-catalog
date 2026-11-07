@@ -1,0 +1,28 @@
+name = "eza"
+description = "Modern replacement for ls"
+kind = "upstream-binary"
+version = "0.23.5"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["eza"]
+
+[[source]]
+url = "https://github.com/eza-community/eza/releases/download/v0.23.5/eza_x86_64-unknown-linux-musl.tar.gz"
+sha256 = "e06eebab74b73d6b7d51a796a353824b001bea82df077706382e100815d28904"
+
+[[source]]
+url = "https://github.com/eza-community/eza/releases/download/v0.23.5/man-0.23.5.tar.gz"
+sha256 = "cbdae2ad79ae0ef1fd6a06f4644c90cef79a56353bc3bb7cf4663bb2831420f9"
+
+[[source]]
+url = "https://github.com/eza-community/eza/releases/download/v0.23.5/completions-0.23.5.tar.gz"
+sha256 = "8ca5a250d28c3c7ebd0077aca203701a17d1ea7c92621d9e274b93965e3c9291"
+
+[install]
+"/usr/bin/eza" = "eza"
+"/usr/share/man/man1/eza.1" = "target/man-0.23.5/eza.1"
+"/usr/share/man/man5/eza_colors.5" = "target/man-0.23.5/eza_colors.5"
+"/usr/share/man/man5/eza_colors-explanation.5" = "target/man-0.23.5/eza_colors-explanation.5"
+"/usr/share/bash-completion/completions/eza" = "target/completions-0.23.5/eza"
+"/usr/share/zsh/vendor-completions/_eza" = "target/completions-0.23.5/_eza"
+"/usr/share/fish/vendor_completions.d/eza.fish" = "target/completions-0.23.5/eza.fish"
