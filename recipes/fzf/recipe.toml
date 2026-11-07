@@ -2,10 +2,11 @@ name = "fzf"
 description = "Command-line fuzzy finder"
 kind = "upstream-binary"
 version = "0.75.0"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
 replaces = ["fzf"]
-user-notes = "echo 'eval \"$(fzf --bash)\"' >> ~/.bashrc"
+user-notes = '''grep -qxF 'command -v fzf >/dev/null && eval "$(fzf --bash)"' ~/.bashrc || echo 'command -v fzf >/dev/null && eval "$(fzf --bash)"' >> ~/.bashrc'''
 
 [[source]]
 url = "https://github.com/junegunn/fzf/releases/download/v0.75.0/fzf-0.75.0-linux_amd64.tar.gz"

@@ -2,10 +2,11 @@ name = "starship"
 description = "Fast, customisable shell prompt"
 kind = "upstream-binary"
 version = "1.27.0"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
 replaces = ["starship"]
-user-notes = "echo 'eval \"$(starship init bash)\"' >> ~/.bashrc"
+user-notes = '''grep -qxF 'command -v starship >/dev/null && eval "$(starship init bash)"' ~/.bashrc || echo 'command -v starship >/dev/null && eval "$(starship init bash)"' >> ~/.bashrc'''
 
 [[source]]
 url = "https://github.com/starship/starship/releases/download/v1.27.0/starship-x86_64-unknown-linux-musl.tar.gz"
