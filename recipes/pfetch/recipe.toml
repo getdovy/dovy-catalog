@@ -1,0 +1,13 @@
+name = "pfetch"
+description = "Pretty system information tool, Rust rewrite of pfetch"
+kind = "upstream-binary"
+version = "3.1.1"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/Gobidev/pfetch-rs/releases/download/v3.1.1/pfetch-linux-musl-x86_64.tar.gz"
+sha256 = "1816aa30f763856403b1a4d91f73ffd79e96d3a0a5cef6f305f025253f6a3a6c"
+
+[install]
+"/usr/bin/pfetch" = "pfetch"
