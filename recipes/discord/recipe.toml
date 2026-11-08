@@ -1,0 +1,22 @@
+name = "discord"
+description = "Discord chat, from Discord's .deb"
+kind = "upstream-binary"
+version = "1.0.168"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://dl.discordapp.net/apps/linux/1.0.168/discord-1.0.168.deb"
+sha256 = "93d43ad090825b9edcacfb3841506ea51e7040c60d93a9e377d0caca547bea28"
+
+# Discord's postinst also deletes caches in every home folder (1.6); kept:
+# the AppArmor profile and the desktop entry's handlers.
+[scripts]
+postinst = """
+#!/bin/sh
+set -e
+if [ "$1" = configure ]; then
+	systemctl reload apparmor 2>/dev/null || true
+	update-desktop-database -q /usr/share/applications 2>/dev/null || true
+fi
+"""
