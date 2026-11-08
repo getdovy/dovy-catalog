@@ -1,0 +1,18 @@
+name = "zram"
+description = "Compressed swap in RAM"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["systemd-zram-generator"]
+
+# 00- sorts first: any drop-in of the user's own wins (principles 5.9).
+# zram-size: half of RAM, at most 8 GiB (generator default caps at 4 GiB).
+# compression-algorithm: zstd, the best ratio of the kernel's built-ins.
+[[file]]
+path = "/etc/systemd/zram-generator.conf.d/00-dovy.conf"
+content = """
+[zram0]
+zram-size = min(ram / 2, 8192)
+compression-algorithm = zstd
+"""
