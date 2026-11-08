@@ -1,0 +1,7 @@
+name = "cli-tools"
+description = "Command-line search and viewing tools from Debian"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["ripgrep", "fd-find", "bat"]
