@@ -1,0 +1,19 @@
+name = "firmware"
+description = "Common hardware firmware from Debian stable"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+requires = ["components"]
+conflicts = ["firmware-backports"]
+packages = [
+  "firmware-misc-nonfree",
+  "firmware-amd-graphics",
+  "firmware-intel-graphics",
+  "firmware-iwlwifi",
+  "firmware-realtek",
+  "firmware-atheros",
+  "firmware-mediatek",
+  "firmware-brcm80211",
+  "firmware-intel-sound",
+]
