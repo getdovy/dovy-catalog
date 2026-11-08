@@ -1,0 +1,8 @@
+name = "kernel-backports"
+description = "Debian's signed kernel from backports"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+backports = true
+packages = ["linux-image-amd64", "linux-headers-amd64"]

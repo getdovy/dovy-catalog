@@ -1,0 +1,17 @@
+name = "mesa-backports"
+description = "Mesa graphics drivers from Debian backports"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+conflicts = ["mesa"]
+backports = true
+packages = [
+  "mesa-vulkan-drivers",
+  "libgl1-mesa-dri",
+  "libglx-mesa0",
+  "libegl-mesa0",
+  "libgbm1",
+  "mesa-va-drivers",
+  "mesa-libgallium",
+]
