@@ -8,3 +8,4 @@
 !TRADEMARKS.md
 !recipes/*/recipe.toml
 !recipes/*/build.sh
+!repositories/*.toml

@@ -1,0 +1,16 @@
+name = "google-chrome"
+uri = "https://dl.google.com/linux/chrome/deb/"
+suite = "stable"
+components = ["main"]
+key-url = "https://dl.google.com/linux/linux_signing_key.pub"
+fingerprints = ["EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"]
+maintainer = "hmwassim"
+
+# Chrome's postinst and daily cron add Google's own source unless this says
+# not to; dovy's repository package already provides it (2.6).
+[[file]]
+path = "/etc/default/google-chrome"
+content = """
+repo_add_once="false"
+repo_reenable_on_distupgrade="false"
+"""
