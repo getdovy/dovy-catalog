@@ -1,0 +1,23 @@
+name = "google-chrome"
+description = "Google Chrome, from Google's repository"
+kind = "vendor-repository"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+
+[repository]
+uri = "https://dl.google.com/linux/chrome/deb/"
+suite = "stable"
+components = ["main"]
+key-url = "https://dl.google.com/linux/linux_signing_key.pub"
+fingerprint = "EB4C1BFD4F042F6DDDCCEC917721F63BD38B4796"
+packages = ["google-chrome-stable"]
+
+# Chrome's postinst and daily cron add Google's own source unless this says
+# not to; dovy's repository package already provides it (2.6).
+[[file]]
+path = "/etc/default/google-chrome"
+content = """
+repo_add_once="false"
+repo_reenable_on_distupgrade="false"
+"""
