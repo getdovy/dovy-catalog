@@ -1,0 +1,14 @@
+name = "firefox"
+description = "Mozilla Firefox, from Mozilla's repository"
+kind = "vendor-repository"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+
+[repository]
+uri = "https://packages.mozilla.org/apt"
+suite = "mozilla"
+components = ["main"]
+key-url = "https://packages.mozilla.org/apt/repo-signing-key.gpg"
+fingerprint = "35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3"
+packages = ["firefox"]
