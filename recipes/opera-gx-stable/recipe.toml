@@ -1,0 +1,27 @@
+name = "opera-gx-stable"
+description = "Opera GX browser, repacked from Opera's repository"
+kind = "vendor-repository"
+version = "139.0.6053.42"
+maintainer = "hmwassim"
+debian = [13]
+repository = "opera"
+packages = ["opera-gx-stable"]
+
+# Opera's postinst, without the cron job, keys and source (ADR 0014).
+# Opera's prerm (alternatives) and postrm are kept; its debconf question
+# about adding a source goes with config and templates.
+[scripts]
+postinst = """
+#!/bin/sh
+set -e
+if [ "$1" = configure ]; then
+	chown root:root /usr/lib/x86_64-linux-gnu/opera-gx-stable/opera_sandbox
+	chmod 4755 /usr/lib/x86_64-linux-gnu/opera-gx-stable/opera_sandbox
+	update-alternatives --install /usr/bin/x-www-browser x-www-browser /usr/bin/opera-gx 120 \\
+		--slave /usr/share/man/man1/x-www-browser.1.gz x-www-browser.1.gz /usr/share/man/man1/opera-gx.1.gz
+	update-alternatives --install /usr/bin/gnome-www-browser gnome-www-browser /usr/bin/opera-gx 120 \\
+		--slave /usr/share/man/man1/gnome-www-browser.1.gz gnome-www-browser.1.gz /usr/share/man/man1/opera-gx.1.gz
+fi
+"""
+config = ""
+templates = ""

@@ -1,0 +1,16 @@
+name = "helium-bin"
+description = "Helium browser, from Helium's .deb"
+kind = "upstream-binary"
+version = "0.21.1.1"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/imputnet/helium-linux/releases/download/0.21.1.1/helium-bin_0.21.1.1-1_amd64.deb"
+sha256 = "679a88ea17e969653e09504a1d01bce155f4e3d2ff366d2571d6d00b985457cc"
+
+# Helium's scripts chown files already root's, refresh caches Debian's
+# triggers refresh, and install an AppArmor profile Debian does not need.
+[scripts]
+postinst = ""
+postrm = ""

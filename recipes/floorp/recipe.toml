@@ -1,0 +1,8 @@
+name = "floorp"
+description = "Floorp browser, from Floorp's repository"
+kind = "vendor-repository"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+repository = "floorp"
+packages = ["floorp"]
