@@ -1,0 +1,7 @@
+name = "mozilla"
+uri = "https://packages.mozilla.org/apt"
+suite = "mozilla"
+components = ["main"]
+key-url = "https://packages.mozilla.org/apt/repo-signing-key.gpg"
+fingerprints = ["35BAA0B33E9EB396F59CA838C0BA5CE6DC6315A3"]
+maintainer = "hmwassim"

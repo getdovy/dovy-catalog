@@ -1,0 +1,10 @@
+name = "opera"
+uri = "https://deb.opera.com/opera-stable/"
+suite = "stable"
+components = ["non-free"]
+key-url = "https://deb.opera.com/archive.key"
+fingerprints = ["6C86BE214648376680CA957B11EE8C00B693A745"]
+maintainer = "hmwassim"
+# Opera's postinst makes apt trust Opera's keys for every repository
+# (trusted.gpg.d, a daily cron job): never given to apt, repacked instead.
+repack = true
