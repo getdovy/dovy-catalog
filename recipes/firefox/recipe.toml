@@ -6,3 +6,4 @@ maintainer = "hmwassim"
 debian = [13]
 repository = "mozilla"
 packages = ["firefox"]
+replaces = ["firefox-esr"]
