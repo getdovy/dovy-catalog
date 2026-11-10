@@ -1,0 +1,12 @@
+name = "btop"
+description = "Resource monitor"
+kind = "testing-rebuild"
+version = "1.4.7"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["btop"]
+source-package = "btop"
+
+[[source]]
+url = "https://deb.debian.org/debian/pool/main/b/btop/btop_1.4.7-1.dsc"
+sha256 = "652ba17beb2e92f83d66dd49b00fbc1adc66f08b2bea07c0b93a5c890d913cb0"

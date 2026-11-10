@@ -1,0 +1,13 @@
+name = "yad"
+description = "Dialogs for shell scripts"
+kind = "upstream-build"
+version = "14.2"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["yad"]
+build-depends = ["autoconf", "automake", "autopoint", "gettext", "pkgconf", "libgtk-3-dev"]
+packages = ["libgtk-3-0t64"]
+
+[[source]]
+url = "https://github.com/v1cont/yad/archive/refs/tags/v14.2.tar.gz"
+sha256 = "6748c0ecb917043326cc70646f143890151dea2fc50db5fe54439de6dc04b1e3"
