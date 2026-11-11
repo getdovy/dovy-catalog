@@ -1,0 +1,9 @@
+name = "codecs"
+description = "Audio and video codecs: FFmpeg, GStreamer plugins, Intel hardware decoding"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+# intel-media-va-driver-non-free is in non-free; it does nothing on AMD or NVIDIA.
+requires = ["components"]
+packages = ["ffmpeg", "gstreamer1.0-libav", "gstreamer1.0-plugins-good", "gstreamer1.0-plugins-bad", "gstreamer1.0-plugins-ugly", "intel-media-va-driver-non-free"]

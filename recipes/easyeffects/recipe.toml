@@ -1,0 +1,7 @@
+name = "easyeffects"
+description = "Audio effects for PipeWire: equalizer, compressor, noise reduction, with the plugins its effects use"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["easyeffects", "lsp-plugins-lv2", "calf-plugins", "x42-plugins", "zam-plugins"]

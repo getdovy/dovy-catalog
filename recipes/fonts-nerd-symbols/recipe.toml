@@ -1,0 +1,18 @@
+name = "fonts-nerd-symbols"
+description = "Nerd Fonts icons for any monospace font (Symbols Only, with fontconfig fallback), and JetBrains Mono"
+kind = "upstream-binary"
+version = "3.5.1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["fonts-jetbrains-mono"]
+
+[[source]]
+url = "https://github.com/ryanoasis/nerd-fonts/releases/download/v3.5.1/NerdFontsSymbolsOnly.zip"
+sha256 = "fdca3682534f6f65e1ccb2345b0362ccf67d9b8eca7c8025330946e93e2473bc"
+
+[install]
+"/usr/share/fonts/truetype/nerd-symbols/SymbolsNerdFont-Regular.ttf" = "SymbolsNerdFont-Regular.ttf"
+"/usr/share/fonts/truetype/nerd-symbols/SymbolsNerdFontMono-Regular.ttf" = "SymbolsNerdFontMono-Regular.ttf"
+"/usr/share/doc/fonts-nerd-symbols/LICENSE" = "LICENSE"
+# Nerd Fonts' own file: the icons as fallback for monospace fonts.
+"/etc/fonts/conf.d/10-nerd-font-symbols.conf" = "10-nerd-font-symbols.conf"
