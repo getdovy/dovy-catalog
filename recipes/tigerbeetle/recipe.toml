@@ -1,0 +1,13 @@
+name = "tigerbeetle"
+description = "Financial transactions database"
+kind = "upstream-binary"
+version = "0.17.9"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/tigerbeetle/tigerbeetle/releases/download/0.17.9/tigerbeetle-x86_64-linux.zip"
+sha256 = "af71f2c0057e3b409bf79940fa94894b738187b0d4f1e711097bca15df5d8cd4"
+
+[install]
+"/usr/bin/tigerbeetle" = "tigerbeetle"

@@ -1,0 +1,10 @@
+name = "zapzap"
+description = "WhatsApp desktop client (Qt)"
+kind = "upstream-binary"
+version = "7.5.1"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/rafatosta/zapzap/releases/download/7.5.1/zapzap-7.5.1-amd64.deb"
+sha256 = "03986a9aad976bb7034d8ff83c774ca033168e54c8c954be8c94c682a770093d"

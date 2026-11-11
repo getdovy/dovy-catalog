@@ -1,0 +1,13 @@
+name = "uncloud"
+description = "Deploy containers across your own machines (uc)"
+kind = "upstream-binary"
+version = "0.22.0"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/psviderski/uncloud/releases/download/v0.22.0/uc_linux_amd64.tar.gz"
+sha256 = "6b75557db63a7c6e43701bc8d6a74d4cc3a1dca48c82bb1f08f4b9809345c816"
+
+[install]
+"/usr/bin/uc" = "uc"

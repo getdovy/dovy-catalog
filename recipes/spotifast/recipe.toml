@@ -1,0 +1,10 @@
+name = "spotifast"
+description = "Spotify client"
+kind = "upstream-binary"
+version = "0.17.1"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/crmne/spotifast/releases/download/v0.17.1/spotifast_0.17.1_amd64.deb"
+sha256 = "74e5b14909fadd1f50134543bcdca118f0648584eeb55f6cdd5539bd9aa460f5"

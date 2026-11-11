@@ -1,0 +1,14 @@
+name = "tree-sitter-cli"
+description = "Tree-sitter parser generator and tools"
+kind = "upstream-binary"
+version = "0.27.2"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["tree-sitter-cli"]
+
+[[source]]
+url = "https://github.com/tree-sitter/tree-sitter/releases/download/v0.27.2/tree-sitter-cli-linux-x64.zip"
+sha256 = "b4233ecc4f0e648d6d8ccc4bac96c00c712ca1a5eb1e0ca7197d29b750bffa6d"
+
+[install]
+"/usr/bin/tree-sitter" = "tree-sitter"

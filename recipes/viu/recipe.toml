@@ -1,0 +1,13 @@
+name = "viu"
+description = "Images in the terminal"
+kind = "upstream-binary"
+version = "1.6.1"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/atanunq/viu/releases/download/v1.6.1/viu-x86_64-unknown-linux-musl"
+sha256 = "f108265ff0441406290d5f53f64a2b88d4db530a7389a5dcd771bf782aa3ec6e"
+
+[install]
+"/usr/bin/viu" = "viu-x86_64-unknown-linux-musl"

@@ -1,0 +1,15 @@
+name = "termusic"
+description = "Music player for the terminal"
+kind = "upstream-binary"
+version = "0.13.2"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["libasound2t64", "libglib2.0-0t64", "libgstreamer1.0-0", "libmpv2"]
+
+[[source]]
+url = "https://github.com/tramhao/termusic/releases/download/v0.13.2/termusic-v0.13.2-x86_64-linux.tar.xz"
+sha256 = "e3be68fae4e04aaba2949f5ecab5d76a760a145802d645028587e1fe97b1d884"
+
+[install]
+"/usr/bin/termusic" = "termusic-v0.13.2-x86_64-linux/termusic"
+"/usr/bin/termusic-server" = "termusic-v0.13.2-x86_64-linux/termusic-server"

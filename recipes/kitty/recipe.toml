@@ -1,0 +1,22 @@
+name = "kitty"
+description = "GPU-based terminal emulator"
+kind = "upstream-binary"
+version = "0.50.0"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["kitty"]
+packages = ["libdbus-1-3", "libfontconfig1", "libx11-6", "libx11-xcb1", "libxcursor1"]
+
+[[source]]
+url = "https://github.com/kovidgoyal/kitty/releases/download/v0.50.0/kitty-0.50.0-x86_64.txz"
+sha256 = "f04b11775574d6aabfb529b7e734cc0a7d7d12c7df9fb8ec1843e45420e514ee"
+
+[install]
+"/usr/lib/kitty" = "."
+"/usr/share/applications/kitty.desktop" = "share/applications/kitty.desktop"
+"/usr/share/icons/hicolor/256x256/apps/kitty.png" = "share/icons/hicolor/256x256/apps/kitty.png"
+"/usr/share/icons/hicolor/scalable/apps/kitty.svg" = "share/icons/hicolor/scalable/apps/kitty.svg"
+
+[links]
+"/usr/bin/kitten" = "/usr/lib/kitty/bin/kitten"
+"/usr/bin/kitty" = "/usr/lib/kitty/bin/kitty"

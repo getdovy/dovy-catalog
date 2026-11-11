@@ -1,0 +1,20 @@
+name = "neovim"
+description = "Vim-based text editor"
+kind = "upstream-binary"
+version = "0.12.6"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["neovim"]
+
+[[source]]
+url = "https://github.com/neovim/neovim/releases/download/v0.12.6/nvim-linux-x86_64.tar.gz"
+sha256 = "474430d53e6264f6d6dd18db42d6dc9df3a1b56ca9e88a325bbf860e1a811d87"
+
+[install]
+"/usr/lib/neovim" = "nvim-linux-x86_64"
+"/usr/share/applications/nvim.desktop" = "nvim-linux-x86_64/share/applications/nvim.desktop"
+"/usr/share/icons/hicolor/128x128/apps/nvim.png" = "nvim-linux-x86_64/share/icons/hicolor/128x128/apps/nvim.png"
+"/usr/share/man/man1/nvim.1" = "nvim-linux-x86_64/share/man/man1/nvim.1"
+
+[links]
+"/usr/bin/nvim" = "/usr/lib/neovim/bin/nvim"

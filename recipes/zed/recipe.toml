@@ -1,0 +1,19 @@
+name = "zed"
+description = "Code editor"
+kind = "upstream-binary"
+version = "1.27.0"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["libasound2t64", "libglib2.0-0t64"]
+
+[[source]]
+url = "https://github.com/zed-industries/zed/releases/download/v1.27.0/zed-linux-x86_64.tar.gz"
+sha256 = "719f6bf649ea8d87961adbf728e178561bac3f598d72d7949558d1150cfc43dd"
+
+[install]
+"/usr/lib/zed" = "zed.app"
+"/usr/share/applications/dev.zed.Zed.desktop" = "zed.app/share/applications/dev.zed.Zed.desktop"
+"/usr/share/icons/hicolor/512x512/apps/zed.png" = "zed.app/share/icons/hicolor/512x512/apps/zed.png"
+
+[links]
+"/usr/bin/zed" = "/usr/lib/zed/bin/zed"

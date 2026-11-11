@@ -1,0 +1,10 @@
+name = "rgrc"
+description = "Colours the output of common commands"
+kind = "upstream-binary"
+version = "0.6.35"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/lazywalker/rgrc/releases/download/v0.6.35/rgrc_0.6.35-1_amd64.deb"
+sha256 = "9e515ab726bda1b5990a7bbb09639fc66983ed414b3d7edd514790be54e92012"

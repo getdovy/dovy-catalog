@@ -1,0 +1,14 @@
+name = "restic"
+description = "Encrypted, deduplicated backups"
+kind = "upstream-binary"
+version = "0.19.1"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["restic"]
+
+[[source]]
+url = "https://github.com/restic/restic/releases/download/v0.19.1/restic_0.19.1_linux_amd64.bz2"
+sha256 = "f415415624dcc452f2a02b8c33641791a8c6d6d3b65bbb3543fcf9a25151585c"
+
+[install]
+"/usr/bin/restic" = "restic_0.19.1_linux_amd64"

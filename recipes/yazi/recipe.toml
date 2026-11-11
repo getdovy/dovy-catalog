@@ -1,0 +1,10 @@
+name = "yazi"
+description = "File manager for the terminal"
+kind = "upstream-binary"
+version = "26.9.1"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/sxyazi/yazi/releases/download/v26.9.1/yazi-x86_64-unknown-linux-musl.deb"
+sha256 = "77d9d41441eaa8f17a555ccd3961ea128321dceac5fc06cf53db131aa60fde8a"

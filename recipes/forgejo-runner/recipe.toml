@@ -1,0 +1,13 @@
+name = "forgejo-runner"
+description = "Runs Forgejo Actions jobs"
+kind = "upstream-binary"
+version = "13.2.1"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://code.forgejo.org/forgejo/runner/releases/download/v13.2.1/forgejo-runner-13.2.1-linux-amd64"
+sha256 = "bb369fe1ecb50fdc983c0b1d993f19b0920df6e5864511892b3cdbf16d858b34"
+
+[install]
+"/usr/bin/forgejo-runner" = "forgejo-runner-13.2.1-linux-amd64"

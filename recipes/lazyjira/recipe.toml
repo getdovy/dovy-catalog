@@ -1,0 +1,10 @@
+name = "lazyjira"
+description = "Terminal UI for Jira"
+kind = "upstream-binary"
+version = "2.19.2"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/textfuel/lazyjira/releases/download/v2.19.2/lazyjira_2.19.2_linux_amd64.deb"
+sha256 = "8614f39bb149b2d88827b9de2623ef7c1ac9301d42c431eab329a68fb8c3315a"

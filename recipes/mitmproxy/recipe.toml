@@ -1,0 +1,16 @@
+name = "mitmproxy"
+description = "Proxy to inspect and change HTTP(S) traffic"
+kind = "upstream-binary"
+version = "12.3.1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["zlib1g"]
+
+[[source]]
+url = "https://downloads.mitmproxy.org/12.3.1/mitmproxy-12.3.1-linux-x86_64.tar.gz"
+sha256 = "f7b4237f5702f6cd21357fe6e4680a7e905f8f9b816b872230d018ea696c34d5"
+
+[install]
+"/usr/bin/mitmdump" = "mitmdump"
+"/usr/bin/mitmproxy" = "mitmproxy"
+"/usr/bin/mitmweb" = "mitmweb"

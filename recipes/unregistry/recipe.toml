@@ -1,0 +1,13 @@
+name = "unregistry"
+description = "Push Docker images to servers over SSH (docker pussh)"
+kind = "upstream-binary"
+version = "0.4.3"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/psviderski/unregistry/releases/download/v0.4.3/unregistry_0.4.3_linux_amd64.tar.gz"
+sha256 = "2c08138c4217f0d66fb31a50e7ce29aafc92b004aa1066e6fbb4e672ed71210a"
+
+[install]
+"/usr/libexec/docker/cli-plugins/docker-pussh" = "docker-pussh"

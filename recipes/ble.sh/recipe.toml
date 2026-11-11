@@ -1,0 +1,15 @@
+name = "ble.sh"
+description = "Line editor for Bash: syntax colours, suggestions"
+kind = "upstream-binary"
+version = "0.4.0~devel3"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["procps"]
+user-notes = "grep -qxF '[[ $- == *i* ]] && [ -f /usr/share/blesh/ble.sh ] && source /usr/share/blesh/ble.sh' ~/.bashrc || echo '[[ $- == *i* ]] && [ -f /usr/share/blesh/ble.sh ] && source /usr/share/blesh/ble.sh' >> ~/.bashrc"
+
+[[source]]
+url = "https://github.com/akinomyoga/ble.sh/releases/download/v0.4.0-devel3/ble-0.4.0-devel3.tar.xz"
+sha256 = "c8612ee612bc6b10dbfd6e85c6cbdfd7caf152a12d1f9de22ea0a9d735b3080c"
+
+[install]
+"/usr/share/blesh" = "ble-0.4.0-devel3"

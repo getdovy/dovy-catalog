@@ -1,0 +1,18 @@
+name = "herdr-desktop"
+description = "Herdr desktop app"
+kind = "upstream-binary"
+version = "0.1.15"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["libxcb1", "libxkbcommon0"]
+
+[[source]]
+url = "https://releases.herdr.dev/app/0.1.15/herdr-app-linux-x86_64.tar.gz"
+sha256 = "f99e1e04be82c0e10b2f69ee7403ca34386f480d92511df5865af4703e7655dd"
+
+[install]
+"/usr/lib/herdr-app" = "herdr-app"
+"/usr/share/icons/hicolor/scalable/apps/herdr-app.svg" = "herdr-app/herdr-app.svg"
+
+[links]
+"/usr/bin/herdr-app" = "/usr/lib/herdr-app/herdr-app"
