@@ -1,0 +1,11 @@
+name = "ripgrep"
+description = "Recursive search in files (rg)"
+kind = "upstream-binary"
+version = "15.2.0"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["ripgrep"]
+
+[[source]]
+url = "https://github.com/BurntSushi/ripgrep/releases/download/15.2.0/ripgrep_15.2.0-1_amd64.deb"
+sha256 = "5af93eebe4c352474632cf1d28523b0e98bcd4e2f115a249a713b8d8c7d1d01c"

@@ -5,3 +5,6 @@ components = ["main"]
 key-url = "https://repository.mullvad.net/deb/mullvad-keyring.asc"
 fingerprints = ["A1198702FC3E0A09A9AE5B75D5A1D4F266DE8DDF"]
 maintainer = "hmwassim"
+# mullvad-vpn's postrm deletes settings in every home folder, and dovy
+# purges its packages: repacked with the recipe's postrm.
+repack = true

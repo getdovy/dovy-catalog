@@ -1,0 +1,23 @@
+name = "fonts-noto"
+description = "Noto fonts for most scripts, CJK and emoji, and Croscore for Arial, Times and Courier"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["fonts-noto-core", "fonts-noto-cjk", "fonts-noto-color-emoji", "fonts-croscore"]
+
+[[file]]
+path = "/etc/fonts/conf.d/52-dovy-fonts-noto.conf"
+content = """
+<?xml version="1.0"?>
+<!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
+<!-- Noto Nastaliq Urdu is not used: it covers Arabic, so Arabic text could
+     be drawn in Urdu calligraphy. Urdu then uses a Naskh-style font. -->
+<fontconfig>
+  <selectfont>
+    <rejectfont>
+      <glob>*NotoNastaliq*</glob>
+    </rejectfont>
+  </selectfont>
+</fontconfig>
+"""

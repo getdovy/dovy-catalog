@@ -1,0 +1,10 @@
+name = "onlyoffice"
+uri = "https://download.onlyoffice.com/repo/debian"
+suite = "squeeze"
+components = ["main"]
+key-url = "https://download.onlyoffice.com/GPG-KEY-ONLYOFFICE"
+fingerprints = ["E09CA29F6E178040EF22B4098320CA65CB2DE8E5"]
+maintainer = "hmwassim"
+# The package's postrm deletes OnlyOffice folders in every home on purge,
+# and dovy purges its packages: repacked with dovy's postrm.
+repack = true

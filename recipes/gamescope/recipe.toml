@@ -1,0 +1,9 @@
+name = "gamescope"
+description = "Valve's gaming compositor: resolution scaling, FSR, frame limits"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+requires = ["components"]
+backports = true
+packages = ["gamescope"]

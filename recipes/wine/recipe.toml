@@ -1,0 +1,10 @@
+name = "wine"
+description = "Wine from Debian, 64-bit and 32-bit, with winetricks"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+# winetricks is in contrib.
+requires = ["components"]
+conflicts = ["winehq-stable", "winehq-staging"]
+packages = ["wine", "wine64", "wine32:i386", "winetricks"]

@@ -1,7 +1,7 @@
 name = "mullvad-browser"
 description = "Mullvad Browser, from Mullvad's repository"
 kind = "vendor-repository"
-version = "1"
+version = "16.0"
 maintainer = "hmwassim"
 debian = [13]
 repository = "mullvad"

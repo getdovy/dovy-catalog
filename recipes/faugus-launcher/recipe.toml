@@ -1,0 +1,10 @@
+name = "faugus-launcher"
+description = "Simple launcher for Windows games through umu and Proton"
+kind = "upstream-binary"
+version = "2.5.7"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/Faugus/faugus-launcher/releases/download/2.5.7/faugus-launcher_2.5.7-1_all.deb"
+sha256 = "12fbb3faa91691d3573b37c0b7a98a10a3d82ef6bcb611857b6b2107e2f10e51"

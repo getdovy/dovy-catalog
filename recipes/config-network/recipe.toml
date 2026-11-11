@@ -1,0 +1,62 @@
+name = "config-network"
+description = "DNS through systemd-resolved, encrypted when the network allows it; time servers; OpenVPN and OpenConnect VPN plugins; captive portal detection"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["systemd-resolved", "systemd-timesyncd", "network-manager-openvpn", "network-manager-openconnect", "network-manager-config-connectivity-debian"]
+
+# The network's own DNS stays first, so local names and captive portals
+# work; queries are encrypted when its servers support it. Cloudflare
+# (malware-blocking) and Quad9 answer only when the network gives none.
+[[file]]
+path = "/etc/systemd/resolved.conf.d/00-dovy-dns.conf"
+content = """
+[Resolve]
+DNSOverTLS=opportunistic
+FallbackDNS=1.1.1.2#security.cloudflare-dns.com 1.0.0.2#security.cloudflare-dns.com 2606:4700:4700::1112#security.cloudflare-dns.com 9.9.9.9#dns.quad9.net 2620:fe::fe#dns.quad9.net
+"""
+
+# NetworkManager hands each network's DNS to systemd-resolved.
+[[file]]
+path = "/etc/NetworkManager/conf.d/00-dovy-dns.conf"
+content = """
+[main]
+dns=systemd-resolved
+"""
+
+[[file]]
+path = "/etc/systemd/timesyncd.conf.d/00-dovy-ntp.conf"
+content = """
+[Time]
+NTP=time.cloudflare.com 0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org
+"""
+
+# Installing systemd-resolved points /etc/resolv.conf at it before it has
+# any server: until NetworkManager hands them over, names do not resolve.
+# Apply both now, and check.
+[scripts]
+postinst = """
+#!/bin/sh
+set -e
+[ "$1" = configure ] || exit 0
+[ -d /run/systemd/system ] || exit 0
+systemctl try-restart systemd-resolved systemd-timesyncd || true
+systemctl try-reload-or-restart NetworkManager || true
+i=0
+until resolvectl query debian.org >/dev/null 2>&1; do
+	i=$((i + 1))
+	if [ "$i" -ge 15 ]; then
+		echo "config-network: names do not resolve yet; check the network, then: sudo systemctl restart systemd-resolved" >&2
+		break
+	fi
+	sleep 1
+done
+"""
+postrm = """
+#!/bin/sh
+set -e
+[ -d /run/systemd/system ] || exit 0
+systemctl try-restart systemd-resolved systemd-timesyncd || true
+systemctl try-reload-or-restart NetworkManager || true
+"""

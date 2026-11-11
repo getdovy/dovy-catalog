@@ -1,0 +1,13 @@
+name = "gitui"
+description = "Terminal UI for Git"
+kind = "upstream-binary"
+version = "0.28.1"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/gitui-org/gitui/releases/download/v0.28.1/gitui-linux-x86_64.tar.gz"
+sha256 = "f6149b9ae203397158b0c89c13cfde718e7121d3d3cd2ebc597f93d6628d9b5b"
+
+[install]
+"/usr/bin/gitui" = "gitui"

@@ -1,0 +1,12 @@
+name = "protonplus"
+description = "Install and manage GE-Proton and other compatibility tools (GTK, for GNOME)"
+kind = "upstream-build"
+version = "0.6.8"
+maintainer = "hmwassim"
+debian = [13]
+build-depends = ["meson", "valac", "gettext", "desktop-file-utils", "libgtk-4-dev", "libadwaita-1-dev", "libjson-glib-dev", "libsoup-3.0-dev", "libgee-0.8-dev", "libarchive-dev", "libnotify-dev", "libcairo2-dev", "libappstream-dev", "libsdl3-dev"]
+packages = ["libadwaita-1-0", "libsdl3-0", "libgee-0.8-2", "libappstream5", "libsoup-3.0-0", "libjson-glib-1.0-0", "libnotify4", "libarchive13t64"]
+
+[[source]]
+url = "https://github.com/Vysp3r/ProtonPlus/archive/refs/tags/v0.6.8.tar.gz"
+sha256 = "9635706b4649032add033fcedf6db8dcbafe20c63789523c10a4764cb08fd2c7"

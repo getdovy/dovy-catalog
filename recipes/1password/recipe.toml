@@ -1,0 +1,41 @@
+name = "1password"
+description = "1Password password manager (proprietary)"
+kind = "vendor-repository"
+version = "8.12.44"
+maintainer = "hmwassim"
+debian = [13]
+repository = "1password"
+packages = ["1password"]
+
+# The vendor's postinst without its update channel (a curl key download and
+# its own apt source). Debian allows user namespaces: the sandbox helper
+# needs no setuid bit. The vendor's postrm cleans up the rest.
+[scripts]
+postinst = """
+#!/bin/sh
+set -e
+[ "$1" = configure ] || exit 0
+cd /opt/1Password
+# System authentication unlocks 1Password for local users.
+POLICY_OWNERS="$(cut -d: -f1,3 /etc/passwd | grep -E ':[0-9]{4}$' | cut -d: -f1 | head -n 10 | sed 's/^/unix-user:/' | tr '\\n' ' ')"
+export POLICY_OWNERS
+eval "cat <<EOF
+$(cat ./com.1password.1Password.policy.tpl)
+EOF" >./com.1password.1Password.policy
+install -Dm0644 ./com.1password.1Password.policy -t /usr/share/polkit-1/actions/
+[ -f /etc/1password/custom_allowed_browsers ] || install -Dm0644 ./resources/custom_allowed_browsers -t /etc/1password/
+install -Dm0644 ./resources/custom_allowed_browsers -t /usr/share/doc/1password/examples/
+chmod 0755 ./chrome-sandbox
+# Browser extension integration.
+getent group onepassword >/dev/null || groupadd onepassword
+chgrp onepassword ./1Password-BrowserSupport
+chmod g+s ./1Password-BrowserSupport
+if [ -f ./1password-mcp ]; then
+	getent group onepassword-mcp >/dev/null || groupadd onepassword-mcp
+	chgrp onepassword-mcp ./1password-mcp
+	chmod g+s ./1password-mcp
+	ln -sf /opt/1Password/1password-mcp /opt/1Password/onepassword-mcp
+	ln -sf /opt/1Password/1password-mcp /usr/bin/1password-mcp
+fi
+ln -sf /opt/1Password/1password /usr/bin/1password
+"""

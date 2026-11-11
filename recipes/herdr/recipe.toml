@@ -1,0 +1,13 @@
+name = "herdr"
+description = "Terminal workspace manager"
+kind = "upstream-binary"
+version = "0.9.5"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/herdrdev/herdr/releases/download/v0.9.5/herdr-linux-x86_64"
+sha256 = "14d9e8bc8b4a9e0118d77c32266f76d461f09b40342eb23752960bd89f59929d"
+
+[install]
+"/usr/bin/herdr" = "herdr-linux-x86_64"

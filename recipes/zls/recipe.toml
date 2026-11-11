@@ -1,0 +1,13 @@
+name = "zls"
+description = "Zig language server"
+kind = "upstream-binary"
+version = "0.17.0"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/zigtools/zls/releases/download/0.17.0/zls-x86_64-linux.tar.xz"
+sha256 = "dfa4514e1868803fdf2ae56832c88b9d400094d70ea6bb136b57bcc91af10258"
+
+[install]
+"/usr/bin/zls" = "zls"

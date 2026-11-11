@@ -1,0 +1,15 @@
+name = "yq"
+description = "YAML, JSON and XML processor"
+kind = "upstream-binary"
+version = "4.54.3"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["yq"]
+
+[[source]]
+url = "https://github.com/mikefarah/yq/releases/download/v4.54.3/yq_linux_amd64.tar.gz"
+sha256 = "09a25baa0e136b8633949e03117fc82cb9e50d10910f988ef17a1305539ebce4"
+
+[install]
+"/usr/bin/yq" = "yq_linux_amd64"
+"/usr/share/man/man1/yq.1" = "yq.1"

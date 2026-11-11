@@ -1,0 +1,13 @@
+name = "deno"
+description = "JavaScript and TypeScript runtime"
+kind = "upstream-binary"
+version = "2.9.8"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/denoland/deno/releases/download/v2.9.8/deno-x86_64-unknown-linux-gnu.zip"
+sha256 = "e890975bc2549807bbcc0b584ffafda72cc7c93349dd99c80483dd784f6c4609"
+
+[install]
+"/usr/bin/deno" = "deno"

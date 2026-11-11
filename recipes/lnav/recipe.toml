@@ -1,0 +1,15 @@
+name = "lnav"
+description = "Log file viewer and navigator"
+kind = "upstream-binary"
+version = "0.14.1"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["lnav"]
+
+[[source]]
+url = "https://github.com/tstack/lnav/releases/download/v0.14.1/lnav-0.14.1-linux-musl-x86_64.zip"
+sha256 = "ec1750f0a6962eed6bb85ad4249457894f190e961277c56d69c47eecce9e705e"
+
+[install]
+"/usr/bin/lnav" = "lnav-0.14.1/lnav"
+"/usr/share/man/man1/lnav.1" = "lnav-0.14.1/lnav.1"

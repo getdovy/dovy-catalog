@@ -1,0 +1,33 @@
+name = "vesktop"
+description = "Discord client with Vencord; screen sharing with audio on Wayland"
+kind = "upstream-binary"
+version = "1.6.9"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/Vencord/Vesktop/releases/download/v1.6.9/vesktop_1.6.9_amd64.deb"
+sha256 = "8487a3ba56c7cd0bb230c1d6b42373fa0a8a23bab6f0809c903988b4f3e9cefc"
+
+# The vendor's postinst also copies an AppArmor profile into /etc for
+# Ubuntu's user-namespace restriction, which Debian does not have. These
+# scripts keep the rest. Debian allows user namespaces, so the sandbox
+# helper needs no setuid bit.
+[scripts]
+postinst = """
+#!/bin/sh
+set -e
+if [ "$1" = configure ]; then
+	update-alternatives --install /usr/bin/vesktop vesktop /opt/Vesktop/vesktop 100
+	chmod 0755 /opt/Vesktop/chrome-sandbox
+	update-mime-database /usr/share/mime 2>/dev/null || true
+	update-desktop-database -q /usr/share/applications 2>/dev/null || true
+fi
+"""
+postrm = """
+#!/bin/sh
+set -e
+if [ "$1" = remove ] || [ "$1" = purge ]; then
+	update-alternatives --remove vesktop /opt/Vesktop/vesktop 2>/dev/null || true
+fi
+"""

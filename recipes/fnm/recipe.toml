@@ -1,0 +1,14 @@
+name = "fnm"
+description = "Fast Node Manager: per-user Node.js versions, switched per project"
+kind = "upstream-binary"
+version = "1.39.0"
+maintainer = "hmwassim"
+debian = [13]
+user-notes = "grep -qxF 'command -v fnm >/dev/null && eval \"$(fnm env --use-on-cd --shell bash)\"' ~/.bashrc || echo 'command -v fnm >/dev/null && eval \"$(fnm env --use-on-cd --shell bash)\"' >> ~/.bashrc"
+
+[[source]]
+url = "https://github.com/Schniz/fnm/releases/download/v1.39.0/fnm-linux.zip"
+sha256 = "7807664f39d39fc518da1c35ba0181e4b3267603c4b1dedeb4b5fc6ae440a224"
+
+[install]
+"/usr/bin/fnm" = "fnm"

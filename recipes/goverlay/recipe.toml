@@ -1,0 +1,8 @@
+name = "goverlay"
+description = "Graphical settings for MangoHud"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+depends = ["mangohud"]
+packages = ["goverlay"]

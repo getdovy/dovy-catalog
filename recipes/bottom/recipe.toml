@@ -1,0 +1,11 @@
+name = "bottom"
+description = "System monitor for the terminal (btm)"
+kind = "upstream-binary"
+version = "0.15.0"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["btm"]
+
+[[source]]
+url = "https://github.com/ClementTsang/bottom/releases/download/0.15.0/bottom_0.15.0-1_amd64.deb"
+sha256 = "02aabca9cd9dd41d3fbf3642e96b5a7b266027fd0ba9eb78a96e4c5eeabcd8c8"

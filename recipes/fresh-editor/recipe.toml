@@ -1,0 +1,10 @@
+name = "fresh-editor"
+description = "Terminal text editor with mouse and menus"
+kind = "upstream-binary"
+version = "0.5.8"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/sinelaw/fresh/releases/download/v0.5.8/fresh-editor_0.5.8-1_amd64.deb"
+sha256 = "57bfebe9ef7aac6efcf1adb20f1407ddd6771badc7b83777bf700faa7612ae28"

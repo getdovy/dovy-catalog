@@ -16,10 +16,16 @@ vm.dirty_background_bytes = 134217728
 vm.vfs_cache_pressure = 50
 # No proactive compaction: it adds latency jitter (default 20).
 vm.compaction_proactiveness = 0
+# More memory mappings per process: some games fail to load with the
+# default 65530 (Fedora, Arch and Ubuntu use this value).
+vm.max_map_count = 1048576
 
 # No hard lockup detector: frees a CPU performance counter. The soft lockup
 # detector stays.
 kernel.nmi_watchdog = 0
+# Split locks are not paused: the pause slows some Windows games under
+# Proton. "-": no error on CPUs without split-lock detection.
+-kernel.split_lock_mitigate = 0
 # No kernel messages on the console below errors.
 kernel.printk = 3 3 3 3
 # Kernel addresses hidden from regular users; root still sees them.

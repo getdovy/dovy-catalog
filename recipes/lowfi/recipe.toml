@@ -1,0 +1,14 @@
+name = "lowfi"
+description = "Lo-fi music in the terminal"
+kind = "upstream-binary"
+version = "2.0.7"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["libasound2t64"]
+
+[[source]]
+url = "https://github.com/talwat/lowfi/releases/download/2.0.7/lowfi-linux-x86_64"
+sha256 = "0cf74630361351209cdd706026e3dabad8dfb779ad02be18bb2365e9e46b0512"
+
+[install]
+"/usr/bin/lowfi" = "lowfi-linux-x86_64"

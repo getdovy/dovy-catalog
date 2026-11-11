@@ -1,0 +1,11 @@
+name = "winehq-staging"
+description = "Wine's staging branch from WineHQ, with winetricks"
+kind = "vendor-repository"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+# winetricks is in contrib.
+requires = ["components"]
+conflicts = ["wine", "winehq-stable"]
+repository = "winehq"
+packages = ["winehq-staging", "wine-staging", "wine-staging-amd64", "wine-staging-i386:i386", "winetricks"]

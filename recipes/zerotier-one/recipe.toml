@@ -1,0 +1,8 @@
+name = "zerotier-one"
+description = "ZeroTier virtual network; join with: sudo zerotier-cli join <network>"
+kind = "vendor-repository"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+repository = "zerotier"
+packages = ["zerotier-one"]

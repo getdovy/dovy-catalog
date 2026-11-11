@@ -1,0 +1,18 @@
+name = "just"
+description = "Command runner for project tasks"
+kind = "upstream-binary"
+version = "1.59.0"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["just"]
+
+[[source]]
+url = "https://github.com/casey/just/releases/download/1.59.0/just-1.59.0-x86_64-unknown-linux-musl.tar.gz"
+sha256 = "409044617b6f06517c1035e55ca38c8c856ff8b650e41bc2aa1ef82d5903a23e"
+
+[install]
+"/usr/bin/just" = "just"
+"/usr/share/bash-completion/completions/just" = "completions/just.bash"
+"/usr/share/fish/vendor_completions.d/just.fish" = "completions/just.fish"
+"/usr/share/man/man1/just.1" = "just.1"
+"/usr/share/zsh/vendor-completions/_just" = "completions/just.zsh"

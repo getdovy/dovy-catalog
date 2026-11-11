@@ -1,0 +1,11 @@
+name = "tlrc"
+description = "Short command examples from tldr pages"
+kind = "upstream-binary"
+version = "1.13.1"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["tealdeer"]
+
+[[source]]
+url = "https://github.com/tldr-pages/tlrc/releases/download/v1.13.1/tlrc-v1.13.1-x86_64-unknown-linux-musl.deb"
+sha256 = "222b9a684deea82a819bf6219458f7cf4aa3229cfddd5514675aaff08fbd51ca"

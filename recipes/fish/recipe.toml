@@ -1,0 +1,31 @@
+name = "fish"
+description = "Friendly interactive shell"
+kind = "upstream-binary"
+version = "4.9.3"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["fish"]
+
+# One program: fish 4 carries its own functions and completions.
+[[source]]
+url = "https://github.com/fish-shell/fish-shell/releases/download/4.9.3/fish-4.9.3-linux-x86_64.tar.xz"
+sha256 = "8f643d10ad1abb0ef7072764c01ceb5cf61b2d373fda400cf60f0bad69b7e095"
+
+[install]
+"/usr/bin/fish" = "fish"
+
+[scripts]
+postinst = """
+#!/bin/sh
+set -e
+if [ "$1" = configure ]; then
+	add-shell /usr/bin/fish
+fi
+"""
+postrm = """
+#!/bin/sh
+set -e
+if [ "$1" = remove ] || [ "$1" = purge ]; then
+	remove-shell /usr/bin/fish 2>/dev/null || true
+fi
+"""

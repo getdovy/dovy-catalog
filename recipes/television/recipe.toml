@@ -1,0 +1,10 @@
+name = "television"
+description = "Fuzzy finder for the terminal (tv)"
+kind = "upstream-binary"
+version = "0.15.9"
+maintainer = "hmwassim"
+debian = [13]
+
+[[source]]
+url = "https://github.com/alexpasmantier/television/releases/download/0.15.9/tv-0.15.9-x86_64-unknown-linux-musl.deb"
+sha256 = "9a78a6408efa339e94a70e153471b0bae18e7486786c04be8d0c30e696e64701"

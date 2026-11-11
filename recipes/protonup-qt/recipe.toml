@@ -1,0 +1,26 @@
+name = "protonup-qt"
+description = "Install and manage GE-Proton and other compatibility tools (Qt, for KDE)"
+kind = "upstream-build"
+version = "2.16.0"
+maintainer = "hmwassim"
+debian = [13]
+build-depends = ["python3-pip", "python3-setuptools", "python3-wheel"]
+packages = ["python3-pyside6.qtcore", "python3-pyside6.qtgui", "python3-pyside6.qtwidgets", "python3-pyside6.qtuitools", "python3-pyside6.qtdbus", "python3-requests", "python3-xdg", "python3-yaml", "python3-zstandard"]
+
+[[source]]
+url = "https://github.com/DavidoTek/ProtonUp-Qt/archive/refs/tags/v2.16.0.tar.gz"
+sha256 = "e09435bdec57818af41fedbe17eac4a838bb33915eeff95c13302de37df5ab89"
+
+# Libraries ProtonUp-Qt pins that Debian lacks: forks of vdf and steam,
+# and inputs. Installed privately, next to the app.
+[[source]]
+url = "https://github.com/solsticegamestudios/vdf/archive/refs/tags/v4.0.tar.gz"
+sha256 = "1d778663f1158be0f70aa1cdd5b2685ae6eee14e4d11a0d96684b7ed86e89c93"
+
+[[source]]
+url = "https://github.com/solsticegamestudios/steam/archive/refs/tags/v2.0.0-alpha1.tar.gz"
+sha256 = "6447a3c97248885b44b73fec3bdcaee0421fe3e6e062d1bb195b9de3acc7eb0a"
+
+[[source]]
+url = "https://files.pythonhosted.org/packages/d1/cd/5f434220920f76eb73d19bb7aab8d857445f40aa642718e6e51e850cd663/inputs-0.5.tar.gz"
+sha256 = "a31d5b96a3525f1232f326be9e7ce8ccaf873c6b1fb84d9f3c9bc3d79b23eae4"
