@@ -4,4 +4,4 @@ kind = "bundle"
 version = "1"
 maintainer = "hmwassim"
 debian = [13]
-members = ["kernel-backports", "firmware-backports", "mesa-backports", "zram", "config-pipewire", "power-profiles", "archivers", "cli-tools", "config-bash"]
+members = ["kernel-backports", "firmware-backports", "mesa-backports", "zram", "config-pipewire", "power-profiles", "archivers", "cli-tools", "config-bash", "config-system"]
