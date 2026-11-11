@@ -1,0 +1,18 @@
+name = "ghostty"
+description = "Fast, native terminal emulator (GTK)"
+kind = "upstream-build"
+version = "1.4.0"
+maintainer = "hmwassim"
+debian = [13]
+network = "zig build downloads the dependencies pinned in build.zig.zon, each checked by hash"
+build-depends = ["libgtk-4-dev", "libadwaita-1-dev", "libgtk4-layer-shell-dev", "blueprint-compiler", "gettext", "libxml2-utils", "pkgconf"]
+packages = ["libgtk-4-1", "libadwaita-1-0", "libgtk4-layer-shell0"]
+
+[[source]]
+url = "https://release.files.ghostty.org/1.4.0/ghostty-1.4.0.tar.gz"
+sha256 = "cb188ac6c3a8278d5fd7bfef15d8c017104c87f638b5560eb38024a71ae0f005"
+
+# The Zig release Ghostty 1.4.0 builds with; Debian has none.
+[[source]]
+url = "https://ziglang.org/download/0.17.1/zig-x86_64-linux-0.17.1.tar.xz"
+sha256 = "3581863e3cbcfd0fce0efc682ce7e9e93da96668a977791d356a26d2a7e9b17a"
