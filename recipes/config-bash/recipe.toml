@@ -1,0 +1,22 @@
+name = "config-bash"
+description = "Bash defaults: larger history, completion"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["bash-completion"]
+user-notes = "grep -qxF '[ -r /etc/dovy/bashrc.d/00-dovy.sh ] && . /etc/dovy/bashrc.d/00-dovy.sh' ~/.bashrc || echo '[ -r /etc/dovy/bashrc.d/00-dovy.sh ] && . /etc/dovy/bashrc.d/00-dovy.sh' >> ~/.bashrc"
+
+[[file]]
+path = "/etc/dovy/bashrc.d/00-dovy.sh"
+content = """
+# History: larger, without duplicates, appended rather than overwritten,
+# and written after every command so no terminal loses it.
+HISTSIZE=10000
+HISTFILESIZE=20000
+HISTCONTROL=ignoreboth:erasedups
+shopt -s histappend
+PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
+# Line wrapping follows window resizes.
+shopt -s checkwinsize
+"""

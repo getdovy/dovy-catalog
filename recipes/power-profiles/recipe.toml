@@ -1,0 +1,8 @@
+name = "power-profiles"
+description = "Power profiles (performance, balanced, power saver) for the desktop"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+conflicts = ["tuned-profiles"]
+packages = ["power-profiles-daemon"]

@@ -1,0 +1,17 @@
+name = "config-pipewire"
+description = "PipeWire audio, playing common sample rates without resampling"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["pipewire-audio"]
+
+[[file]]
+path = "/etc/pipewire/pipewire.conf.d/00-dovy.conf"
+content = """
+# Rates the device may switch to, so 44.1 kHz and 96 kHz audio play
+# untouched instead of being resampled to 48 kHz.
+context.properties = {
+    default.clock.allowed-rates = [ 44100 48000 88200 96000 ]
+}
+"""
