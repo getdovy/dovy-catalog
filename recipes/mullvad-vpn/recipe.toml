@@ -1,0 +1,22 @@
+name = "mullvad-vpn"
+description = "Mullvad VPN app and daemon"
+kind = "vendor-repository"
+version = "2026.5"
+maintainer = "hmwassim"
+debian = [13]
+repository = "mullvad"
+packages = ["mullvad-vpn"]
+
+# The vendor's postrm without deleting folders in users' homes (1.6); those
+# stay as per-user leftovers.
+[scripts]
+postrm = """
+#!/bin/bash
+set -eu
+if [ "$1" = purge ]; then
+	rm -rf /var/log/mullvad-vpn /var/cache/mullvad-vpn /etc/mullvad-vpn
+fi
+if apparmor_parser -R /etc/apparmor.d/mullvad >/dev/null 2>&1; then
+	rm -f /etc/apparmor.d/mullvad
+fi
+"""
