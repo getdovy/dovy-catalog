@@ -1,0 +1,12 @@
+name = "docker-ce"
+description = "Docker CE from Docker's repository, with Compose and Buildx; the docker group is equivalent to root"
+kind = "vendor-repository"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+conflicts = ["docker"]
+# Docker's packages conflict with Debian's Docker and ship the same plugins.
+replaces = ["docker.io", "docker-cli", "containerd", "runc", "docker-compose", "docker-buildx"]
+repository = "docker"
+packages = ["docker-ce", "docker-ce-cli", "containerd.io", "docker-buildx-plugin", "docker-compose-plugin"]
+user-notes = "sudo usermod -aG docker \"$USER\""

@@ -1,0 +1,39 @@
+name = "code"
+description = "Visual Studio Code, from Microsoft's repository"
+kind = "vendor-repository"
+version = "1.108.0"
+maintainer = "hmwassim"
+debian = [13]
+repository = "vscode"
+packages = ["code"]
+
+# The vendor's scripts, without adding Microsoft's source or asking about it.
+[scripts]
+postinst = """
+#!/bin/sh
+set -e
+if [ "$1" = configure ]; then
+	ln -sf /usr/share/code/bin/code /usr/bin/code
+	update-alternatives --install /usr/bin/editor editor /usr/bin/code 0
+	update-desktop-database -q 2>/dev/null || true
+	update-mime-database /usr/share/mime 2>/dev/null || true
+fi
+"""
+prerm = """
+#!/bin/sh
+set -e
+if [ "$1" = remove ]; then
+	update-alternatives --remove editor /usr/bin/code
+fi
+"""
+postrm = """
+#!/bin/sh
+set -e
+if [ "$1" = remove ] || [ "$1" = purge ]; then
+	rm -f /usr/bin/code
+	update-desktop-database -q 2>/dev/null || true
+	update-mime-database /usr/share/mime 2>/dev/null || true
+fi
+"""
+config = ""
+templates = ""
