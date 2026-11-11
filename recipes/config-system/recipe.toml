@@ -1,0 +1,99 @@
+name = "config-system"
+description = "System tuning: writeback limits, memory, BFQ for hard disks and SD, short shutdown timeout, quieter logs; applies after a reboot"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+
+[[file]]
+path = "/etc/sysctl.d/00-dovy-system.conf"
+content = """
+# Fixed writeback limits instead of 20%/10% of RAM, which lets gigabytes of
+# unwritten data build up (USB copies report done long before they are).
+vm.dirty_bytes = 268435456
+vm.dirty_background_bytes = 134217728
+# Keep file metadata cached longer (default 100).
+vm.vfs_cache_pressure = 50
+# No proactive compaction: it adds latency jitter (default 20).
+vm.compaction_proactiveness = 0
+
+# No hard lockup detector: frees a CPU performance counter. The soft lockup
+# detector stays.
+kernel.nmi_watchdog = 0
+# No kernel messages on the console below errors.
+kernel.printk = 3 3 3 3
+# Kernel addresses hidden from regular users; root still sees them.
+kernel.kptr_restrict = 1
+
+# Find a working packet size when a network path drops large packets.
+net.ipv4.tcp_mtu_probing = 1
+
+# File watchers for IDEs and sync tools.
+fs.inotify.max_user_watches = 1048576
+fs.inotify.max_user_instances = 8192
+"""
+
+[[file]]
+path = "/etc/udev/rules.d/60-dovy-scheduler.rules"
+content = """
+# BFQ for hard disks and SD/eMMC keeps the desktop responsive while the
+# disk is busy. SATA SSDs keep mq-deadline, NVMe keeps none.
+ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="sd*[!0-9]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
+ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="mmcblk*[0-9]", ATTR{queue/scheduler}="bfq"
+"""
+
+[[file]]
+path = "/etc/tmpfiles.d/dovy-thp.conf"
+content = """
+# Debian's huge pages are "always". Stall-free compaction for memory that
+# does not ask for them; direct compaction only for memory that does.
+w /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise
+# Split huge pages more than 80% empty, so they do not waste memory
+# (default 511, never split).
+w /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409
+"""
+
+[[file]]
+path = "/etc/modprobe.d/dovy-blacklist.conf"
+content = """
+# No motherboard beeper.
+blacklist pcspkr
+blacklist snd-pcsp
+# Hardware watchdog timers: Debian's systemd does not use them unless
+# RuntimeWatchdogSec= is set.
+blacklist iTCO_wdt
+blacklist sp5100_tco
+blacklist wdat_wdt
+"""
+
+[[file]]
+path = "/etc/systemd/system.conf.d/00-dovy-timeout.conf"
+content = """
+# A stuck service delays shutdown by 15 s, not 90 s.
+[Manager]
+DefaultTimeoutStopSec=15s
+"""
+
+[[file]]
+path = "/etc/systemd/user.conf.d/00-dovy-timeout.conf"
+content = """
+# A stuck user service delays logout and shutdown by 15 s, not 90 s.
+[Manager]
+DefaultTimeoutStopSec=15s
+"""
+
+[[file]]
+path = "/etc/systemd/journald.conf.d/00-dovy-size.conf"
+content = """
+# The journal keeps at most 1 GB (default 10% of the disk, up to 4 GB).
+[Journal]
+SystemMaxUse=1G
+"""
+
+[[file]]
+path = "/etc/systemd/system/rtkit-daemon.service.d/00-dovy-loglevel.conf"
+content = """
+# rtkit logs every priority change; keep info and above.
+[Service]
+LogLevelMax=info
+"""

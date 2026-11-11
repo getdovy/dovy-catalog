@@ -1,0 +1,11 @@
+name = "scx-tools"
+description = "scx_loader D-Bus service, scxctl and scxtui, to start and switch sched_ext schedulers"
+kind = "upstream-binary"
+version = "1.1.3"
+maintainer = "hmwassim"
+debian = [13]
+depends = ["scx-scheds"]
+
+[[source]]
+url = "https://github.com/hmwassim/scx-bundler/releases/download/v1.1.4/scx-tools_1.1.3-1_amd64.deb"
+sha256 = "67a170869b0bfc9a69b8f4936b1206442466e3c6c2b4c4b3ec24bb04898e5a30"
