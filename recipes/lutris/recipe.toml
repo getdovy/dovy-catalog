@@ -1,0 +1,18 @@
+name = "lutris"
+description = "Game launcher for GOG, Epic, emulators and Wine"
+kind = "upstream-binary"
+version = "0.5.22"
+maintainer = "hmwassim"
+debian = [13]
+replaces = ["lutris"]
+
+[[source]]
+url = "https://github.com/lutris/lutris/releases/download/v0.5.22/lutris_0.5.22_all.deb"
+sha256 = "88a350357e0438b423cdf93108f27942de094dc19f973df73839f3b0b0bafaa0"
+
+# The vendor's scripts restart AppArmor and flag a reboot for an Ubuntu
+# user-namespace profile; Debian does not restrict user namespaces, so both
+# are dropped. prerm (Python cache cleanup) stays.
+[scripts]
+postinst = ""
+postrm = ""

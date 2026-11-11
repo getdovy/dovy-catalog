@@ -1,0 +1,8 @@
+name = "gamemode"
+description = "Feral GameMode: higher priority and CPU performance while a game runs"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["gamemode", "libgamemodeauto0:i386"]
+user-notes = "sudo usermod -aG gamemode \"$USER\""

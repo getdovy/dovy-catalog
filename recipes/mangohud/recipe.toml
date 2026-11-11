@@ -1,0 +1,16 @@
+name = "mangohud"
+description = "Performance overlay for games (FPS, frame times, CPU and GPU load), 64-bit and 32-bit"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["mangohud", "mangohud:i386"]
+
+[[file]]
+path = "/etc/udev/rules.d/60-dovy-powercap.rules"
+content = """
+# CPU energy counters readable by the video group, so MangoHud and powertop
+# show CPU power without root. Group only: world-readable counters are a
+# side channel (CVE-2020-8694).
+ENV{SUBSYSTEM}=="powercap", ACTION=="add|change", RUN+="/usr/bin/find /sys$env{DEVPATH} -name energy_uj -exec chmod 440 {} + -exec chown root:video {} +"
+"""
