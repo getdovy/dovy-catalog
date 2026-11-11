@@ -1,0 +1,8 @@
+name = "1password-cli"
+description = "1Password command-line tool, op (proprietary)"
+kind = "vendor-repository"
+version = "2.42.0"
+maintainer = "hmwassim"
+debian = [13]
+repository = "1password"
+packages = ["1password-cli"]

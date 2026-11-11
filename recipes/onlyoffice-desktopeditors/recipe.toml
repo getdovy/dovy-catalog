@@ -1,0 +1,19 @@
+name = "onlyoffice-desktopeditors"
+description = "OnlyOffice Desktop Editors: documents, spreadsheets, presentations, PDF"
+kind = "vendor-repository"
+version = "10.0.0"
+maintainer = "hmwassim"
+debian = [13]
+repository = "onlyoffice"
+packages = ["onlyoffice-desktopeditors"]
+
+# The vendor's postrm without deleting folders in users' homes (1.6); those
+# stay as per-user leftovers.
+[scripts]
+postrm = """
+#!/bin/sh
+set -e
+if [ "$1" = remove ] || [ "$1" = upgrade ]; then
+	rm -f /usr/share/mime/packages/onlyoffice-docxf.xml /usr/share/mime/packages/onlyoffice-oform.xml
+fi
+"""
