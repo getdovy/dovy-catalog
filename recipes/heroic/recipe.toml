@@ -4,6 +4,8 @@ kind = "upstream-binary"
 version = "2.22.4"
 maintainer = "hmwassim"
 debian = [13]
+# Electron needs ALSA; the vendor's Depends miss it.
+packages = ["libasound2t64"]
 
 [[source]]
 url = "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.22.4/Heroic-2.22.4-linux-amd64.deb"

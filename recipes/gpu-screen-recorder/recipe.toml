@@ -5,7 +5,7 @@ version = "6.1.6"
 maintainer = "hmwassim"
 debian = [13]
 build-depends = ["meson", "pkgconf", "libavcodec-dev", "libavformat-dev", "libavutil-dev", "libavfilter-dev", "libswresample-dev", "libx11-dev", "libxcomposite-dev", "libxrandr-dev", "libxfixes-dev", "libxdamage-dev", "libpulse-dev", "libva-dev", "libdrm-dev", "libwayland-dev", "libdbus-1-dev", "libcap-dev", "libpipewire-0.3-dev", "libspa-0.2-dev", "libgl-dev", "libegl-dev", "libvulkan-dev"]
-packages = ["libcap2-bin", "libavcodec61", "libavformat61", "libavfilter10", "libpulse0", "libva2", "libpipewire-0.3-0t64", "libvulkan1"]
+packages = ["libcap2-bin", "libavcodec61", "libavformat61", "libavfilter10", "libpulse0", "libva2", "libpipewire-0.3-0t64", "libvulkan1", "libwayland-egl1", "libxcomposite1", "libxdamage1", "libxrandr2"]
 
 [[source]]
 url = "https://dec05eba.com/snapshot/gpu-screen-recorder.git.6.1.6.tar.gz"
