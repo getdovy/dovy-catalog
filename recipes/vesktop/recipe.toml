@@ -4,6 +4,8 @@ kind = "upstream-binary"
 version = "1.6.9"
 maintainer = "hmwassim"
 debian = [13]
+# Electron needs ALSA; the vendor's Depends miss it.
+packages = ["libasound2t64"]
 
 [[source]]
 url = "https://github.com/Vencord/Vesktop/releases/download/v1.6.9/vesktop_1.6.9_amd64.deb"
