@@ -1,5 +1,5 @@
 name = "fonts-ms"
-description = "Microsoft core fonts, and better rendering for any Microsoft fonts, including Windows fonts copied to ~/.local/share/fonts"
+description = "Microsoft core fonts; Arabic in Microsoft fonts drawn by Vazirmatn, also in Windows fonts copied to ~/.local/share/fonts"
 kind = "setup"
 version = "1"
 maintainer = "hmwassim"
@@ -8,6 +8,9 @@ debian = [13]
 # for Microsoft's EULA.
 requires = ["components"]
 packages = ["ttf-mscorefonts-installer", "fonts-vazirmatn-variable"]
+# Fonts already in ~/.local/share/fonts were read before this rule: the
+# user's font cache is made again.
+user-notes = "fc-cache -f"
 
 [[file]]
 path = "/etc/fonts/conf.d/52-dovy-fonts-ms.conf"
@@ -15,9 +18,11 @@ content = """
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
 <!-- Microsoft fonts, wherever installed (system or ~/.local/share/fonts):
-     outlines instead of embedded bitmaps; Arabic drawn by Vazirmatn, as
-     their Arabic is much smaller than their Latin. -->
+     outlines instead of embedded bitmaps; Arabic drawn by Vazirmatn.
+     One block per family: a test takes one value. -->
 <fontconfig>
+  <!-- These have Arabic, much smaller than their Latin: it is taken out
+       of what fontconfig sees; the files are not changed. -->
   <match target="font">
     <test name="family"><string>Arial</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
@@ -106,64 +111,6 @@ content = """
     <accept><family>Vazirmatn</family></accept>
   </alias>
   <match target="font">
-    <test name="family"><string>Verdana</string></test>
-    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
-  </match>
-  <match target="scan">
-    <test name="family"><string>Verdana</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Verdana</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
-  <match target="font">
-    <test name="family"><string>Georgia</string></test>
-    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
-  </match>
-  <match target="scan">
-    <test name="family"><string>Georgia</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Georgia</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
-  <match target="font">
     <test name="family"><string>Tahoma</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
@@ -193,35 +140,6 @@ content = """
     <accept><family>Vazirmatn</family></accept>
   </alias>
   <match target="font">
-    <test name="family"><string>Trebuchet MS</string></test>
-    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
-  </match>
-  <match target="scan">
-    <test name="family"><string>Trebuchet MS</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Trebuchet MS</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
-  <match target="font">
     <test name="family"><string>Calibri</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
@@ -248,151 +166,6 @@ content = """
   </match>
   <alias>
     <family>Calibri</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
-  <match target="font">
-    <test name="family"><string>Cambria</string></test>
-    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
-  </match>
-  <match target="scan">
-    <test name="family"><string>Cambria</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Cambria</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
-  <match target="font">
-    <test name="family"><string>Candara</string></test>
-    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
-  </match>
-  <match target="scan">
-    <test name="family"><string>Candara</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Candara</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
-  <match target="font">
-    <test name="family"><string>Consolas</string></test>
-    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
-  </match>
-  <match target="scan">
-    <test name="family"><string>Consolas</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Consolas</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
-  <match target="font">
-    <test name="family"><string>Constantia</string></test>
-    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
-  </match>
-  <match target="scan">
-    <test name="family"><string>Constantia</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Constantia</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
-  <match target="font">
-    <test name="family"><string>Corbel</string></test>
-    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
-  </match>
-  <match target="scan">
-    <test name="family"><string>Corbel</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Corbel</family>
     <accept><family>Vazirmatn</family></accept>
   </alias>
   <match target="font">
@@ -451,6 +224,71 @@ content = """
   </match>
   <alias>
     <family>Microsoft Sans Serif</family>
+    <accept><family>Vazirmatn</family></accept>
+  </alias>
+  <!-- These have no Arabic. -->
+  <match target="font">
+    <test name="family"><string>Verdana</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
+  <alias>
+    <family>Verdana</family>
+    <accept><family>Vazirmatn</family></accept>
+  </alias>
+  <match target="font">
+    <test name="family"><string>Georgia</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
+  <alias>
+    <family>Georgia</family>
+    <accept><family>Vazirmatn</family></accept>
+  </alias>
+  <match target="font">
+    <test name="family"><string>Trebuchet MS</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
+  <alias>
+    <family>Trebuchet MS</family>
+    <accept><family>Vazirmatn</family></accept>
+  </alias>
+  <match target="font">
+    <test name="family"><string>Cambria</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
+  <alias>
+    <family>Cambria</family>
+    <accept><family>Vazirmatn</family></accept>
+  </alias>
+  <match target="font">
+    <test name="family"><string>Candara</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
+  <alias>
+    <family>Candara</family>
+    <accept><family>Vazirmatn</family></accept>
+  </alias>
+  <match target="font">
+    <test name="family"><string>Consolas</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
+  <alias>
+    <family>Consolas</family>
+    <accept><family>Vazirmatn</family></accept>
+  </alias>
+  <match target="font">
+    <test name="family"><string>Constantia</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
+  <alias>
+    <family>Constantia</family>
+    <accept><family>Vazirmatn</family></accept>
+  </alias>
+  <match target="font">
+    <test name="family"><string>Corbel</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
+  <alias>
+    <family>Corbel</family>
     <accept><family>Vazirmatn</family></accept>
   </alias>
 </fontconfig>
