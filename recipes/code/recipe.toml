@@ -5,7 +5,11 @@ version = "1.108.0"
 maintainer = "hmwassim"
 debian = [13]
 repository = "vscode"
-packages = ["code"]
+# After its own: what the bundled Microsoft Authentication extension's
+# native sign-in helper (libmsalruntime.so) loads. The vendor declares
+# libcurl by names Debian 13 resolves to the GnuTLS build, and the rest
+# not at all.
+packages = ["code", "libcurl4t64", "libsecret-1-0", "libsoup-3.0-0", "libwebkit2gtk-4.1-0"]
 
 # The vendor's scripts, without adding Microsoft's source or asking about it.
 [scripts]
