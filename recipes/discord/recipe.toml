@@ -1,13 +1,13 @@
 name = "discord"
 description = "Discord chat, from Discord's .deb"
 kind = "upstream-binary"
-version = "1.0.168"
+version = "1.0.169"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://dl.discordapp.net/apps/linux/1.0.168/discord-1.0.168.deb"
-sha256 = "93d43ad090825b9edcacfb3841506ea51e7040c60d93a9e377d0caca547bea28"
+url = "https://dl.discordapp.net/apps/linux/1.0.169/discord-1.0.169.deb"
+sha256 = "64d39ef66390149c09ec7d20759a2e4aa0b93efc071d073e3e72155eb86639df"
 
 # Discord's postinst also deletes caches in every home folder (1.6); kept:
 # the AppArmor profile and the desktop entry's handlers.
