@@ -1,0 +1,76 @@
+# Every push to main is a release (ADR 0022): checks, then a second
+# maintainer's approval, then a signed catalog-YYYY.MM.DD.N tag (UTC).
+# A newer push cancels a run still waiting: approving the newest releases
+# everything merged since the last tag.
+name: release
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: read
+concurrency:
+  group: release
+  cancel-in-progress: true
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    container: debian:13
+    steps:
+      - run: |
+          sed -i 's/^Components: main$/Components: main contrib non-free non-free-firmware/' /etc/apt/sources.list.d/debian.sources
+          apt-get update -qq
+          apt-get install -qq -y --no-install-recommends python3
+          apt-cache pkgnames | sort -u >/tmp/debian-names
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 -I tools/check.py --debian-names /tmp/debian-names
+
+  release:
+    needs: check
+    # Live once public: GitHub Free enforces the approval gate only there (ADR 0022).
+    if: ${{ !github.event.repository.private }}
+    runs-on: ubuntu-latest
+    environment: release # required reviewers; the key is its secret alone
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - name: what is new since the last release
+        run: |
+          last=$(git tag -l 'catalog-*' --sort=-version:refname | head -n 1)
+          if [ -n "$last" ] && [ "$(git rev-parse "$last^{commit}")" = "$(git rev-parse HEAD)" ]; then
+            echo "main is $last already: nothing to release"
+            echo "SKIP=1" >>"$GITHUB_ENV"
+            exit 0
+          fi
+          # ADR 0023: a new dovy ships before the minimum that needs it.
+          if [ -n "$last" ]; then
+            was=$(git show "$last:catalog.toml" 2>/dev/null | sed -n 's/^dovy = "\(.*\)"$/\1/p')
+            now=$(sed -n 's/^dovy = "\(.*\)"$/\1/p' catalog.toml)
+            if [ "$was" != "$now" ] && ! git diff --quiet "$last" HEAD -- recipes/dovy; then
+              echo "catalog.toml raises the minimum ($was -> $now) in the release that changes recipes/dovy;"
+              echo "release the dovy recipe first, then the minimum (ADR 0023)"
+              exit 1
+            fi
+          fi
+          d=$(date -u +%Y.%m.%d) n=1
+          while git rev-parse -q --verify "refs/tags/catalog-$d.$n" >/dev/null; do n=$((n + 1)); done
+          echo "TAG=catalog-$d.$n" >>"$GITHUB_ENV"
+          echo "releasing catalog-$d.$n; last release: ${last:-none}"
+      - name: sign and push the tag
+        if: env.SKIP != '1'
+        env:
+          KEY: ${{ secrets.RELEASE_KEY }}
+        run: |
+          umask 077
+          key=$(mktemp)
+          trap 'rm -f "$key" signers' EXIT
+          printf '%s\n' "$KEY" >"$key"
+          ssh-keygen -y -f "$key" | awk '{ print "dovy-catalog-release namespaces=\"git\" " $1 " " $2 }' >signers
+          git -c gpg.format=ssh -c user.signingkey="$key" -c user.name="dovy release" -c user.email=getdovy@tuta.io \
+            tag -s -m "$TAG" "$TAG"
+          git -c gpg.format=ssh -c gpg.ssh.allowedSignersFile=signers verify-tag "$TAG"
+          git push origin "refs/tags/$TAG"
