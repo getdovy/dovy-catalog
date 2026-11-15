@@ -12,6 +12,8 @@
 !.github/logo/*.svg
 !.github/ISSUE_TEMPLATE/*.yml
 !.github/pull_request_template.md
+!.github/workflows/*.yml
+!tools/*.py
 !recipes/*/recipe.toml
 !recipes/*/build.sh
 !repositories/*.toml
