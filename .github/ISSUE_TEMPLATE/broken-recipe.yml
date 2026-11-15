@@ -1,0 +1,43 @@
+name: Broken recipe
+description: A recipe fails to install, upgrade, remove, or run.
+title: "Broken recipe: "
+labels: ["broken recipe"]
+body:
+  - type: input
+    id: recipe
+    attributes:
+      label: Recipe
+    validations:
+      required: true
+  - type: dropdown
+    id: step
+    attributes:
+      label: When
+      options:
+        - install
+        - upgrade
+        - remove
+        - running the software
+    validations:
+      required: true
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: The error dovy showed, and what you expected.
+      render: text
+    validations:
+      required: true
+  - type: textarea
+    id: log
+    attributes:
+      label: Log
+      description: The log file named in dovy's error, under /var/log/dovy.
+      render: text
+  - type: input
+    id: versions
+    attributes:
+      label: Versions
+      description: "Output of: dovy --version; cat /etc/debian_version"
+    validations:
+      required: true

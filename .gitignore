@@ -6,6 +6,12 @@
 !README.md
 !LICENSE
 !TRADEMARKS.md
+!CONTRIBUTING.md
+!catalog.toml
+!docs/*.md
+!.github/logo/*.svg
+!.github/ISSUE_TEMPLATE/*.yml
+!.github/pull_request_template.md
 !recipes/*/recipe.toml
 !recipes/*/build.sh
 !repositories/*.toml
