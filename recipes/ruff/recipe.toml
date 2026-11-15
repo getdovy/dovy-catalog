@@ -1,13 +1,13 @@
 name = "ruff"
 description = "Python linter and formatter"
 kind = "upstream-binary"
-version = "0.17.4"
+version = "0.17.5"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://github.com/astral-sh/ruff/releases/download/0.17.4/ruff-x86_64-unknown-linux-musl.tar.gz"
-sha256 = "d1d6ec9ce1ce0c01e23532a157a677077ba1f82f7cd2cde6f0bd75e65f85df93"
+url = "https://github.com/astral-sh/ruff/releases/download/0.17.5/ruff-x86_64-unknown-linux-musl.tar.gz"
+sha256 = "dc94b7e225b8910fb6f55298ada32d00e356dbd195a5ffb647847f388cb54f84"
 
 [install]
 "/usr/bin/ruff" = "ruff-x86_64-unknown-linux-musl/ruff"
