@@ -1,7 +1,7 @@
 name = "tinkergame"
-description = "Per-game control panel for Steam games: Proton, mods, Gamescope, MangoHud (alpha; SteamTinkerLaunch's successor)"
+description = "Per-game control panel for Steam games: Proton, mods, Gamescope, MangoHud (beta; SteamTinkerLaunch's successor)"
 kind = "upstream-build"
-version = "0.1.0~alpha.15"
+version = "0.2.0~beta.1"
 maintainer = "hmwassim"
 debian = [13]
 # YAD 7.2 or newer; Debian 13 has 0.40.
@@ -10,5 +10,5 @@ build-depends = ["make"]
 packages = ["bash", "git", "wget", "tar", "unzip", "jq", "xdotool", "xxd", "x11-xserver-utils", "x11-utils"]
 
 [[source]]
-url = "https://github.com/360900/tinkergame/archive/refs/tags/v0.1.0-alpha.15.tar.gz"
-sha256 = "2c1f8110b11c6e2c84ec5fd0e81c261bab26118bdc0b9143315fdb847adbd381"
+url = "https://github.com/360900/tinkergame/archive/refs/tags/v0.2.0-beta.1.tar.gz"
+sha256 = "d75d3766a6c19fbdf90c8962af86799233c2528fcd16082aa1f57005ad6e0a91"
