@@ -1,14 +1,14 @@
 name = "cliamp"
 description = "Music player for the terminal"
 kind = "upstream-binary"
-version = "2.4.0"
+version = "2.4.1"
 maintainer = "hmwassim"
 debian = [13]
 packages = ["libasound2t64"]
 
 [[source]]
-url = "https://github.com/bjarneo/cliamp/releases/download/v2.4.0/cliamp-linux-amd64"
-sha256 = "2ee17d8f613d9dd23d124b8f5580111610f5aa396b20f2818e388f7b7a227152"
+url = "https://github.com/bjarneo/cliamp/releases/download/v2.4.1/cliamp-linux-amd64"
+sha256 = "cb6e9a08f2b9617d56b5e472d08d3cd68ad1312a161224a33c6f82e26c1ab2b1"
 
 [install]
 "/usr/bin/cliamp" = "cliamp-linux-amd64"
