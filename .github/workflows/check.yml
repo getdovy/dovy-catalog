@@ -1,0 +1,21 @@
+# Every pull request: the catalog's own structural checks (ADR 0021),
+# against Debian 13's package names.
+name: check
+on:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    container: debian:13
+    steps:
+      - run: |
+          sed -i 's/^Components: main$/Components: main contrib non-free non-free-firmware/' /etc/apt/sources.list.d/debian.sources
+          apt-get update -qq
+          apt-get install -qq -y --no-install-recommends python3
+          apt-cache pkgnames | sort -u >/tmp/debian-names
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - run: python3 -I tools/check.py --debian-names /tmp/debian-names
