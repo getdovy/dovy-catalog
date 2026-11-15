@@ -1,13 +1,13 @@
 name = "slack-desktop"
 description = "Slack (proprietary)"
 kind = "upstream-binary"
-version = "4.53.283"
+version = "4.53.287"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://downloads.slack-edge.com/desktop-releases/linux/x64/4.53.283/slack-desktop-4.53.283-amd64.deb"
-sha256 = "a2bff74518d770608cecb25da2834571f4d4aa9b2f479bd2e846c6f8e962f808"
+url = "https://downloads.slack-edge.com/desktop-releases/linux/x64/4.53.287/slack-desktop-4.53.287-amd64.deb"
+sha256 = "c2057f221e41275b7eadc5b658edc00289466b6fb55c912c5894831f6900f969"
 
 # Slack's /etc/cron.daily/slack puts Slack's keys in trusted.gpg.d and adds
 # its own apt source unless this file switches it off.
