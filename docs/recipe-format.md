@@ -23,7 +23,7 @@ build. Unknown fields are an error.
 | `maintainer` | string | yes | who keeps it updated |
 | `debian` | list of ints | yes | Debian releases supported, e.g. `[13]` |
 | `requires` | list | no | capabilities: `i386`, `components`, `backports` |
-| `depends` | list | no | other recipes, e.g. `nvflux` → `["nvidia"]` |
+| `depends` | list | no | other recipes, e.g. `nvflux` → `["nvidia"]`; installed with it, and a new one comes with `upgrade` |
 | `conflicts` | list | no | the other half of a pair |
 | `replaces` | list | no | Debian packages it replaces; required when it does. Same name: newer version. Other name: `Conflicts`. Restored on removal |
 | `hardware` | string | no | a named check built into dovy: `nvidia-turing` (every NVIDIA GPU in NVIDIA's open-module table) |
