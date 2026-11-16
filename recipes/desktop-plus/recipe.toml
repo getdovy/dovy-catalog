@@ -1,0 +1,36 @@
+name = "desktop-plus"
+description = "Desktop Plus, a GitHub Desktop fork with features for power users"
+kind = "upstream-binary"
+version = "3.6.12.0"
+maintainer = "hmwassim"
+debian = [13]
+# Electron needs ALSA; the vendor's Depends miss it.
+packages = ["libasound2t64"]
+
+[[source]]
+url = "https://github.com/desktop-plus/desktop-plus/releases/download/v3.6.12.0/DesktopPlus-v3.6.12.0-linux-x86_64.deb"
+sha256 = "91ac51e9f338ea4a6d8aa41ddbf547d7437eabc8bb8750955a9a10b8f8a23d87"
+
+# The vendor's scripts link the program and its CLI into /usr/bin; its
+# postrm also writes, runs and deletes a profile.d file left by old
+# versions, and drops the links on every upgrade. These keep the links,
+# removed only with the package. Debian allows user namespaces, so the
+# sandbox helper needs no setuid bit.
+[scripts]
+postinst = """
+#!/bin/sh
+set -e
+if [ "$1" = configure ]; then
+	chmod 0755 /usr/lib/desktop-plus/chrome-sandbox
+	chmod 0755 /usr/lib/desktop-plus/resources/app/static/desktop-plus-cli
+	ln -sf /usr/lib/desktop-plus/desktop-plus /usr/bin/desktop-plus
+	ln -sf /usr/lib/desktop-plus/resources/app/static/desktop-plus-cli /usr/bin/desktop-plus-cli
+fi
+"""
+postrm = """
+#!/bin/sh
+set -e
+if [ "$1" = remove ] || [ "$1" = purge ]; then
+	rm -f /usr/bin/desktop-plus /usr/bin/desktop-plus-cli
+fi
+"""
