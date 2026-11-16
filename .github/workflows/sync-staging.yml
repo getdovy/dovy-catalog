@@ -1,0 +1,22 @@
+# After a merge into main: staging moves to main, when it holds nothing
+# main lacks. Work already on staging is left alone, and said so.
+name: sync staging
+on:
+  push:
+    branches: [main]
+permissions:
+  contents: write
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+      - run: |
+          if git merge-base --is-ancestor origin/staging origin/main; then
+            git push origin origin/main:refs/heads/staging
+            echo "staging moved to $(git rev-parse --short origin/main)"
+          else
+            echo "staging has commits main lacks: left as it is"
+          fi
