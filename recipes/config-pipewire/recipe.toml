@@ -1,7 +1,8 @@
 name = "config-pipewire"
-description = "PipeWire audio, playing common sample rates without resampling"
+description = "PipeWire audio: common sample rates without resampling, larger buffers for Wine and Proton games, HDMI kept awake"
 kind = "setup"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
 packages = ["pipewire-audio"]
@@ -14,4 +15,31 @@ content = """
 context.properties = {
     default.clock.allowed-rates = [ 44100 48000 88200 96000 ]
 }
+"""
+
+[[file]]
+path = "/etc/pipewire/pipewire-pulse.conf.d/00-dovy-wine.conf"
+content = """
+# Wine and Proton games crackle with PipeWire's smallest buffers: at least
+# 1024 samples (about 21 ms at 48 kHz). Debian's Wine runs as wine64;
+# WineHQ's and Proton's as wine-preloader or wine64-preloader.
+pulse.rules = [
+    {
+        matches = [ { application.process.binary = "~^wine(64)?(-preloader)?$" } ]
+        actions = { update-props = { pulse.min.quantum = 1024/48000 } }
+    }
+]
+"""
+
+[[file]]
+path = "/etc/wireplumber/wireplumber.conf.d/50-dovy-hdmi.conf"
+content = """
+# HDMI and DisplayPort outputs stay awake: TVs and receivers otherwise cut
+# off the first second of sound after 5 s of silence.
+monitor.alsa.rules = [
+    {
+        matches = [ { node.name = "~alsa_output.*hdmi.*" } ]
+        actions = { update-props = { session.suspend-timeout-seconds = 0 } }
+    }
+]
 """

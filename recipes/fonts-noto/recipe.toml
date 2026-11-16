@@ -1,10 +1,11 @@
 name = "fonts-noto"
-description = "Noto fonts for most scripts, CJK and emoji, and Croscore for Arial, Times and Courier"
+description = "Noto fonts for most scripts, CJK and emoji, and Croscore and Crosextra for Arial, Times, Courier, Calibri and Cambria"
 kind = "setup"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
-packages = ["fonts-noto-core", "fonts-noto-cjk", "fonts-noto-color-emoji", "fonts-croscore"]
+packages = ["fonts-noto-core", "fonts-noto-cjk", "fonts-noto-color-emoji", "fonts-croscore", "fonts-crosextra-carlito", "fonts-crosextra-caladea"]
 
 [[file]]
 path = "/etc/fonts/conf.d/52-dovy-fonts-noto.conf"

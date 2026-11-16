@@ -1,0 +1,17 @@
+name = "config-nvidia"
+description = "NVIDIA's driver loaded early in boot, so the login screen finds it"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+hardware = "nvidia-turing"
+
+# Installed with nvidia, which depends on it.
+[[file]]
+path = "/etc/modules-load.d/dovy-nvidia.conf"
+content = """
+# nvidia_drm at boot, before the display manager: until it loads, the
+# firmware framebuffer (simpledrm) is card0, and SDDM's X server can crash
+# probing it. Once loaded, nvidia_drm replaces simpledrm.
+nvidia_drm
+"""

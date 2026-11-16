@@ -2,9 +2,12 @@ name = "nvidia"
 description = "NVIDIA's open driver, from NVIDIA's repository"
 kind = "vendor-repository"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
 hardware = "nvidia-turing"
+# Loads the driver early in boot (config-nvidia).
+depends = ["config-nvidia"]
 secure-boot = "dkms"
 repository = "nvidia"
 packages = ["nvidia-open", "nvidia-driver-libs:i386", "linux-headers-amd64"]

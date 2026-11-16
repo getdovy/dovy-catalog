@@ -1,7 +1,8 @@
 name = "config-bash"
-description = "Bash defaults: larger history, completion"
+description = "Bash defaults: larger history, completion, fzf, zoxide and starship when installed"
 kind = "setup"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
 packages = ["bash-completion"]
@@ -19,4 +20,8 @@ shopt -s histappend
 PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
 # Line wrapping follows window resizes.
 shopt -s checkwinsize
+# Shell integration for tools installed with dovy, when present.
+command -v fzf >/dev/null && eval "$(fzf --bash)"
+command -v zoxide >/dev/null && eval "$(zoxide init bash)"
+command -v starship >/dev/null && eval "$(starship init bash)"
 """

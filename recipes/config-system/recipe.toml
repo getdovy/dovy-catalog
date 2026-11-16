@@ -2,6 +2,7 @@ name = "config-system"
 description = "System tuning: writeback limits, memory, BFQ for hard disks and SD, short shutdown timeout, quieter logs; applies after a reboot"
 kind = "setup"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
 
@@ -57,6 +58,13 @@ w /sys/kernel/mm/transparent_hugepage/defrag - - - - defer+madvise
 # Split huge pages more than 80% empty, so they do not waste memory
 # (default 511, never split).
 w /sys/kernel/mm/transparent_hugepage/khugepaged/max_ptes_none - - - - 409
+"""
+
+[[file]]
+path = "/etc/modules-load.d/dovy-ntsync.conf"
+content = """
+# NT sync primitives for Wine and Proton (/dev/ntsync).
+ntsync
 """
 
 [[file]]
