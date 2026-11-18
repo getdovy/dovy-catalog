@@ -2,6 +2,7 @@ name = "mesa-backports"
 description = "Mesa graphics drivers from Debian backports"
 kind = "setup"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
 conflicts = ["mesa"]
