@@ -11,8 +11,8 @@ fingerprints = [
 ]
 maintainer = "hmwassim"
 
-# Brave's postinst and daily cron add Brave's own source unless these say
-# not to; dovy's repository package already provides it (2.6).
+# Stops Brave's postinst and daily cron from adding Brave's own source;
+# dovy's repository package provides it.
 [[file]]
 path = "/etc/default/brave-browser"
 content = """

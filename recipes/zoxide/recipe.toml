@@ -1,5 +1,5 @@
 name = "zoxide"
-description = "cd that learns the folders you use"
+description = "zoxide: a cd that learns frequently used folders"
 kind = "upstream-binary"
 version = "0.10.0"
 maintainer = "hmwassim"

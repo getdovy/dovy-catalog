@@ -11,10 +11,8 @@ packages = ["libasound2t64"]
 url = "https://github.com/Vencord/Vesktop/releases/download/v1.6.9/vesktop_1.6.9_amd64.deb"
 sha256 = "8487a3ba56c7cd0bb230c1d6b42373fa0a8a23bab6f0809c903988b4f3e9cefc"
 
-# The vendor's postinst also copies an AppArmor profile into /etc for
-# Ubuntu's user-namespace restriction, which Debian does not have. These
-# scripts keep the rest. Debian allows user namespaces, so the sandbox
-# helper needs no setuid bit.
+# Vendor postinst without its Ubuntu AppArmor profile. No setuid sandbox
+# helper: Debian allows user namespaces.
 [scripts]
 postinst = """
 #!/bin/sh

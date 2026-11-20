@@ -1,5 +1,5 @@
 name = "uncloud"
-description = "Deploy containers across your own machines (uc)"
+description = "Uncloud: deploy containers across several machines (uc)"
 kind = "upstream-binary"
 version = "0.22.0"
 maintainer = "hmwassim"

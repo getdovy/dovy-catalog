@@ -1,9 +1,10 @@
 name = "docker"
-description = "Docker from Debian, with Compose and Buildx; the docker group is equivalent to root"
+description = "Docker from Debian, with Compose and Buildx"
 kind = "setup"
 version = "1"
 maintainer = "hmwassim"
 debian = [13]
 conflicts = ["docker-ce"]
 packages = ["docker.io", "docker-compose", "docker-buildx"]
+# The docker group is equivalent to root.
 user-notes = "sudo usermod -aG docker \"$USER\""

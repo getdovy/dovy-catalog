@@ -1,5 +1,5 @@
 name = "easyeffects"
-description = "Audio effects for PipeWire: equalizer, compressor, noise reduction, with the plugins its effects use"
+description = "EasyEffects: audio effects for PipeWire, with their plugins"
 kind = "setup"
 version = "1"
 maintainer = "hmwassim"

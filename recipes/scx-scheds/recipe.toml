@@ -1,5 +1,5 @@
 name = "scx-scheds"
-description = "sched_ext CPU schedulers (scx_bpfland, scx_lavd, scx_rusty and others) and scxtop"
+description = "sched_ext CPU schedulers (scx_bpfland, scx_lavd and others) and scxtop"
 kind = "upstream-binary"
 version = "1.1.4"
 maintainer = "hmwassim"

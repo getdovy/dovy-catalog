@@ -7,8 +7,7 @@ debian = [13]
 conflicts = ["flathub-kde"]
 packages = ["flatpak", "gnome-software-plugin-flatpak"]
 
-# Flathub's own .flatpakrepo, with its signing key; flatpak adds the remote
-# from it.
+# Flathub's own .flatpakrepo; flatpak adds the remote from it.
 [[file]]
 path = "/etc/flatpak/remotes.d/flathub.flatpakrepo"
 content = """

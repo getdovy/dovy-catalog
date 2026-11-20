@@ -11,10 +11,8 @@ packages = ["libasound2t64"]
 url = "https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher/releases/download/v2.22.4/Heroic-2.22.4-linux-amd64.deb"
 sha256 = "46aa36778f16d98a86823fc42fcb7ef47efab346ff19380165201aa373ebf70a"
 
-# The vendor's postinst also copies an AppArmor profile into /etc for
-# Ubuntu's user-namespace restriction, which Debian does not have. These
-# scripts keep the rest. Debian allows user namespaces, so the sandbox
-# helper needs no setuid bit.
+# Vendor postinst without its Ubuntu AppArmor profile. No setuid sandbox
+# helper: Debian allows user namespaces.
 [scripts]
 postinst = """
 #!/bin/sh

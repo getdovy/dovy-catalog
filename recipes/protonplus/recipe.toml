@@ -1,5 +1,5 @@
 name = "protonplus"
-description = "Install and manage GE-Proton and other compatibility tools (GTK, for GNOME)"
+description = "ProtonPlus: GE-Proton and compatibility tool manager (GTK, for GNOME)"
 kind = "upstream-build"
 version = "0.6.8"
 maintainer = "hmwassim"

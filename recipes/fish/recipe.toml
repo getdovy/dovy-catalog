@@ -6,7 +6,7 @@ maintainer = "hmwassim"
 debian = [13]
 replaces = ["fish"]
 
-# One program: fish 4 carries its own functions and completions.
+# fish 4 is one binary with its own functions and completions.
 [[source]]
 url = "https://github.com/fish-shell/fish-shell/releases/download/4.9.3/fish-4.9.3-linux-x86_64.tar.xz"
 sha256 = "8f643d10ad1abb0ef7072764c01ceb5cf61b2d373fda400cf60f0bad69b7e095"

@@ -1,14 +1,13 @@
 name = "config-network"
-description = "DNS through systemd-resolved, encrypted when the network allows it; time servers; OpenVPN and OpenConnect VPN plugins; captive portal detection"
+description = "DNS through systemd-resolved, time servers and VPN plugins"
 kind = "setup"
 version = "1"
 maintainer = "hmwassim"
 debian = [13]
 packages = ["systemd-resolved", "systemd-timesyncd", "network-manager-openvpn", "network-manager-openconnect", "network-manager-config-connectivity-debian"]
 
-# The network's own DNS stays first, so local names and captive portals
-# work; queries are encrypted when its servers support it. Cloudflare
-# (malware-blocking) and Quad9 answer only when the network gives none.
+# The network's DNS stays first, for local names and captive portals;
+# Cloudflare and Quad9 answer only when the network gives none.
 [[file]]
 path = "/etc/systemd/resolved.conf.d/00-dovy-dns.conf"
 content = """
@@ -17,7 +16,6 @@ DNSOverTLS=opportunistic
 FallbackDNS=1.1.1.2#security.cloudflare-dns.com 1.0.0.2#security.cloudflare-dns.com 2606:4700:4700::1112#security.cloudflare-dns.com 9.9.9.9#dns.quad9.net 2620:fe::fe#dns.quad9.net
 """
 
-# NetworkManager hands each network's DNS to systemd-resolved.
 [[file]]
 path = "/etc/NetworkManager/conf.d/00-dovy-dns.conf"
 content = """
@@ -32,9 +30,8 @@ content = """
 NTP=time.cloudflare.com 0.debian.pool.ntp.org 1.debian.pool.ntp.org 2.debian.pool.ntp.org 3.debian.pool.ntp.org
 """
 
-# Installing systemd-resolved points /etc/resolv.conf at it before it has
-# any server: until NetworkManager hands them over, names do not resolve.
-# Apply both now, and check.
+# resolv.conf points at resolved before it has servers: restart both, then
+# wait until names resolve.
 [scripts]
 postinst = """
 #!/bin/sh

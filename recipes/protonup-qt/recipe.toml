@@ -1,5 +1,5 @@
 name = "protonup-qt"
-description = "Install and manage GE-Proton and other compatibility tools (Qt, for KDE)"
+description = "ProtonUp-Qt: GE-Proton and compatibility tool manager (Qt, for KDE)"
 kind = "upstream-build"
 version = "2.16.0"
 maintainer = "hmwassim"
@@ -11,8 +11,7 @@ packages = ["python3-pyside6.qtcore", "python3-pyside6.qtgui", "python3-pyside6.
 url = "https://github.com/DavidoTek/ProtonUp-Qt/archive/refs/tags/v2.16.0.tar.gz"
 sha256 = "e09435bdec57818af41fedbe17eac4a838bb33915eeff95c13302de37df5ab89"
 
-# Libraries ProtonUp-Qt pins that Debian lacks: forks of vdf and steam,
-# and inputs. Installed privately, next to the app.
+# Pinned libraries Debian lacks, installed privately next to the app.
 [[source]]
 url = "https://github.com/solsticegamestudios/vdf/archive/refs/tags/v4.0.tar.gz"
 sha256 = "1d778663f1158be0f70aa1cdd5b2685ae6eee14e4d11a0d96684b7ed86e89c93"
