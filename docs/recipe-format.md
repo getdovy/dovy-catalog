@@ -17,7 +17,7 @@ build. Unknown fields are an error.
 |---|---|---|---|
 | `name` | string | yes | equals the folder name; `[a-z0-9][a-z0-9.+-]*` |
 | `description` | string | yes | one line, no final period |
-| `kind` | string | yes | `upstream-build`, `upstream-binary`, `vendor-repository`, `testing-rebuild`, `setup`, `bundle` |
+| `kind` | string | yes | `upstream-build`, `upstream-binary`, `vendor-repository`, `testing-rebuild`, `setup`, `bundle`, `local-build` |
 | `version` | string | yes | exact upstream version; never "latest" |
 | `revision` | int | no | default 1; bumped when the recipe changes and `version` does not |
 | `maintainer` | string | yes | who keeps it updated |
@@ -41,12 +41,13 @@ build. Unknown fields are an error.
 | `vendor-repository` | `repository` (a file in `repositories/`, below), `packages`. Built as `dovy-<name>`, depending on the packages and on `dovy-repo-<repository>` |
 | `testing-rebuild` | `source-package` (Debian testing's); one `[[source]]`: its `.dsc` (`url`, `sha256`), whose files dovy checks against it; built with `dpkg-buildpackage` against stable (and backports if required), without network; `packages` as for `upstream-build`; `build.sh` only if the default rebuild needs help |
 | `setup` | `packages` (Debian; `name:i386` for 32-bit, which implies `requires = ["i386"]`), `backports = true` to pin them to backports (implies `backports`), `[[file]]` drop-ins (`path`, `content`); `[scripts]` for what files cannot do, e.g. restarting a service |
-| `bundle` | `members` (recipes): installed with the bundle as recipes of their own, each removable; the bundle's package recommends them. A member whose other half is installed is skipped. New members come with `upgrade` |
+| `bundle` | `members` (recipes): installed with the bundle as recipes of their own, each removable; the bundle's package recommends them. A member whose other half is installed is skipped. New members come with `upgrade`. `packages` (Debian; `name:i386` implies `requires = ["i386"]`): the bundle's own, which it depends on |
+| `local-build` | built from files the user has, not downloaded: `[local]` `path` (a folder under the home, `~/...`) and `match` (file name patterns, case ignored, e.g. `["*.ttf"]`). dovy copies the matching regular files, as the user, into the sources, keeping their sub-folders, and runs `build.sh` in the sandbox, without the network; the folder is only read. `build-depends` and `packages` as for `upstream-build`. The package's version is the recipe's plus when those files last changed (`1+20261120153000`), so files added, changed or removed make a newer one, which `upgrade` builds. With no matching file the recipe is not available; once installed, it is kept as it is |
 
 ## Package names
 
-`upstream-build`, `upstream-binary` and `testing-rebuild` build a package
-named after the recipe (`steam`). `setup`, `vendor-repository` and
+`upstream-build`, `upstream-binary`, `testing-rebuild` and `local-build`
+build a package named after the recipe (`steam`). `setup`, `vendor-repository` and
 `bundle` build `dovy-<name>` (`dovy-firefox`), so they never clash with
 the packages they bring; a name already starting with `dovy-` is kept
 (`dovy-defaults`). Every package records the catalog release it was built
