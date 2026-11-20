@@ -1,31 +1,30 @@
 name = "config-system"
-description = "System tuning: writeback limits, memory, BFQ for hard disks and SD, short shutdown timeout, quieter logs; applies after a reboot"
+description = "System tuning for disks, memory, shutdown and logs"
 kind = "setup"
 version = "1"
-revision = 2
+revision = 3
 maintainer = "hmwassim"
 debian = [13]
+packages = ["hdparm"]
 
 [[file]]
 path = "/etc/sysctl.d/00-dovy-system.conf"
 content = """
-# Fixed writeback limits instead of 20%/10% of RAM, which lets gigabytes of
-# unwritten data build up (USB copies report done long before they are).
+# Fixed writeback limits: with 20%/10% of RAM, USB copies report done long
+# before the data is written.
 vm.dirty_bytes = 268435456
 vm.dirty_background_bytes = 134217728
 # Keep file metadata cached longer (default 100).
 vm.vfs_cache_pressure = 50
 # No proactive compaction: it adds latency jitter (default 20).
 vm.compaction_proactiveness = 0
-# More memory mappings per process: some games fail to load with the
-# default 65530 (Fedora, Arch and Ubuntu use this value).
+# Some games fail to load with the default 65530.
 vm.max_map_count = 1048576
 
-# No hard lockup detector: frees a CPU performance counter. The soft lockup
-# detector stays.
+# Frees a CPU performance counter; the soft lockup detector stays.
 kernel.nmi_watchdog = 0
-# Split locks are not paused: the pause slows some Windows games under
-# Proton. "-": no error on CPUs without split-lock detection.
+# The split-lock pause slows some Windows games under Proton. "-": no error
+# on CPUs without split-lock detection.
 -kernel.split_lock_mitigate = 0
 # No kernel messages on the console below errors.
 kernel.printk = 3 3 3 3
@@ -43,10 +42,29 @@ fs.inotify.max_user_instances = 8192
 [[file]]
 path = "/etc/udev/rules.d/60-dovy-scheduler.rules"
 content = """
-# BFQ for hard disks and SD/eMMC keeps the desktop responsive while the
-# disk is busy. SATA SSDs keep mq-deadline, NVMe keeps none.
+# BFQ keeps the desktop responsive while a hard disk or SD card is busy.
+# SATA SSDs keep mq-deadline, NVMe keeps none.
 ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="sd*[!0-9]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
 ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="mmcblk*[0-9]", ATTR{queue/scheduler}="bfq"
+"""
+
+# No head parking or spin-down on desktop and server chassis; laptops and
+# USB disks are left alone.
+[[file]]
+path = "/etc/udev/rules.d/69-dovy-hdparm.rules"
+content = """
+ACTION=="add|change", SUBSYSTEM=="block", KERNEL=="sd[a-z]", ATTR{queue/rotational}=="1", ENV{ID_BUS}=="ata", ENV{ID_USB_DRIVER}=="", \\
+    PROGRAM="/usr/bin/cat /sys/class/dmi/id/chassis_type", RESULT=="3|4|5|6|7|13|15|16|17|23|24|28|29|35|36", \\
+    RUN+="/usr/sbin/hdparm -B 254 -S 0 /dev/%k"
+"""
+
+# Desktop and server SATA links at full power (same chassis check).
+[[file]]
+path = "/etc/udev/rules.d/50-dovy-sata-power.rules"
+content = """
+ACTION=="add", SUBSYSTEM=="scsi_host", KERNEL=="host*", TEST=="link_power_management_policy", \\
+    PROGRAM="/usr/bin/cat /sys/class/dmi/id/chassis_type", RESULT=="3|4|5|6|7|13|15|16|17|23|24|28|29|35|36", \\
+    ATTR{link_power_management_policy}="max_performance"
 """
 
 [[file]]
@@ -70,11 +88,9 @@ ntsync
 [[file]]
 path = "/etc/modprobe.d/dovy-blacklist.conf"
 content = """
-# No motherboard beeper.
 blacklist pcspkr
 blacklist snd-pcsp
-# Hardware watchdog timers: Debian's systemd does not use them unless
-# RuntimeWatchdogSec= is set.
+# Debian's systemd uses no watchdog unless RuntimeWatchdogSec= is set.
 blacklist iTCO_wdt
 blacklist sp5100_tco
 blacklist wdat_wdt
@@ -99,9 +115,9 @@ DefaultTimeoutStopSec=15s
 [[file]]
 path = "/etc/systemd/journald.conf.d/00-dovy-size.conf"
 content = """
-# The journal keeps at most 1 GB (default 10% of the disk, up to 4 GB).
 [Journal]
 SystemMaxUse=1G
+MaxRetentionSec=3month
 """
 
 [[file]]

@@ -1,17 +1,18 @@
 name = "config-pipewire"
-description = "PipeWire audio: common sample rates without resampling, larger buffers for Wine and Proton games, HDMI kept awake"
+description = "PipeWire audio tuning for sample rates, games and HDMI"
 kind = "setup"
 version = "1"
-revision = 2
+revision = 3
 maintainer = "hmwassim"
 debian = [13]
 packages = ["pipewire-audio"]
+# The pipewire group gets Debian's real-time limits (25-pw-rlimits.conf).
+user-notes = "sudo usermod -aG pipewire \"$USER\""
 
 [[file]]
 path = "/etc/pipewire/pipewire.conf.d/00-dovy.conf"
 content = """
-# Rates the device may switch to, so 44.1 kHz and 96 kHz audio play
-# untouched instead of being resampled to 48 kHz.
+# Rates the device may switch to, so 44.1 and 96 kHz audio is not resampled.
 context.properties = {
     default.clock.allowed-rates = [ 44100 48000 88200 96000 ]
 }
@@ -20,9 +21,8 @@ context.properties = {
 [[file]]
 path = "/etc/pipewire/pipewire-pulse.conf.d/00-dovy-wine.conf"
 content = """
-# Wine and Proton games crackle with PipeWire's smallest buffers: at least
-# 1024 samples (about 21 ms at 48 kHz). Debian's Wine runs as wine64;
-# WineHQ's and Proton's as wine-preloader or wine64-preloader.
+# Wine and Proton crackle with the smallest buffers. Debian's Wine runs as
+# wine64; WineHQ's and Proton's as wine-preloader or wine64-preloader.
 pulse.rules = [
     {
         matches = [ { application.process.binary = "~^wine(64)?(-preloader)?$" } ]
@@ -34,12 +34,12 @@ pulse.rules = [
 [[file]]
 path = "/etc/wireplumber/wireplumber.conf.d/50-dovy-hdmi.conf"
 content = """
-# HDMI and DisplayPort outputs stay awake: TVs and receivers otherwise cut
-# off the first second of sound after 5 s of silence.
+# HDMI and DisplayPort stay awake (TVs cut the first second after silence)
+# and rank after other outputs, so monitor speakers are not picked first.
 monitor.alsa.rules = [
     {
         matches = [ { node.name = "~alsa_output.*hdmi.*" } ]
-        actions = { update-props = { session.suspend-timeout-seconds = 0 } }
+        actions = { update-props = { session.suspend-timeout-seconds = 0, priority.driver = 100, priority.session = 100 } }
     }
 ]
 """

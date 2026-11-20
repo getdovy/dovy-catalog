@@ -8,17 +8,16 @@ conflicts = ["power-profiles"]
 replaces = ["power-profiles-daemon"]
 packages = ["tuned-ppd"]
 
-# The desktop's Performance profile maps to tuned's throughput-performance,
-# a server profile. This one replaces it with CPU and firmware settings only.
+# The desktop's Performance profile maps to this server profile; replaced
+# with CPU and firmware settings only.
 [[file]]
 path = "/etc/tuned/profiles/throughput-performance/tuned.conf"
 content = """
 [main]
 summary=Desktop performance (dovy): CPU, firmware and SATA links at performance; memory, disk and network as Debian sets them
 
-# Debian's server profile also sets min_perf_pct=100 (every core held at
-# full clock: heat and fan noise), vm.swappiness=10 (works against zram),
-# dirty-page ratios, readahead and somaxconn. They are left out here.
+# Left out from Debian's version: min_perf_pct=100 (heat, fan noise),
+# vm.swappiness=10 (works against zram), dirty ratios, readahead, somaxconn.
 [cpu]
 governor=performance
 energy_perf_bias=performance
@@ -31,8 +30,7 @@ platform_profile=performance
 [video]
 panel_power_savings=0
 
-# SATA links at full power: no wake-up delay on SATA disks (NVMe is not
-# affected). Balanced and power saver keep Debian's link power saving.
+# No SATA wake-up delay; balanced and power saver keep link power saving.
 [scsi_host]
 alpm=max_performance
 """

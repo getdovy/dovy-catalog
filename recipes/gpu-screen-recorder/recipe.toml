@@ -11,8 +11,8 @@ packages = ["libcap2-bin", "libavcodec61", "libavformat61", "libavfilter10", "li
 url = "https://dec05eba.com/snapshot/gpu-screen-recorder.git.6.1.7.tar.gz"
 sha256 = "17be095ed8c6200c467c1477cc127c97b056b25071443d015e0ef026cf3fcd73"
 
-# The build's own install step sets the capability; a package sets it here.
-# Without it, recording a monitor on Wayland asks for the password each time.
+# Set here instead of by the build. Without it, recording a monitor on
+# Wayland asks for the password each time.
 [scripts]
 postinst = """
 #!/bin/sh

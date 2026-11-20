@@ -5,13 +5,11 @@ version = "1.143.17232"
 maintainer = "hmwassim"
 debian = [13]
 repository = "vscodium"
-# After its own: what the bundled Microsoft Authentication extension's
-# native sign-in helper (libmsalruntime.so) loads. The vendor declares
-# libcurl by names Debian 13 resolves to the GnuTLS build, and the rest
-# not at all.
+# Libraries the bundled Microsoft sign-in helper (libmsalruntime.so) loads;
+# the vendor's Depends miss them or resolve libcurl to the GnuTLS build.
 packages = ["codium", "libcurl4t64", "libsecret-1-0", "libsoup-3.0-0", "libwebkit2gtk-4.1-0"]
 
-# The vendor's scripts, without Microsoft's source or the Copilot link.
+# Vendor scripts without Microsoft's source or the Copilot link.
 [scripts]
 postinst = """
 #!/bin/sh

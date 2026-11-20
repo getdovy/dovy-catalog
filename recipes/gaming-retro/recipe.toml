@@ -1,0 +1,7 @@
+name = "gaming-retro"
+description = "Classic games: ScummVM, DOSBox, MIDI music, GOG installer extraction"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["scummvm", "dosbox", "timidity", "fluidsynth", "innoextract"]

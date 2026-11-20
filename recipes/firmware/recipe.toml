@@ -2,10 +2,12 @@ name = "firmware"
 description = "Common hardware firmware from Debian stable"
 kind = "setup"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
 requires = ["components"]
 conflicts = ["firmware-backports"]
+depends = ["firmware-sof", "microcode"]
 packages = [
   "firmware-misc-nonfree",
   "firmware-amd-graphics",
@@ -16,4 +18,6 @@ packages = [
   "firmware-mediatek",
   "firmware-brcm80211",
   "firmware-intel-sound",
+  "firmware-cirrus",
+  "firmware-nvidia-graphics",
 ]

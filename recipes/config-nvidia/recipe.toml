@@ -1,17 +1,25 @@
 name = "config-nvidia"
-description = "NVIDIA's driver loaded early in boot, so the login screen finds it"
+description = "NVIDIA driver setup: early loading, laptop GPU switching, power-off"
 kind = "setup"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
 hardware = "nvidia-turing"
+packages = ["switcheroo-control"]
 
-# Installed with nvidia, which depends on it.
 [[file]]
 path = "/etc/modules-load.d/dovy-nvidia.conf"
 content = """
-# nvidia_drm at boot, before the display manager: until it loads, the
-# firmware framebuffer (simpledrm) is card0, and SDDM's X server can crash
-# probing it. Once loaded, nvidia_drm replaces simpledrm.
+# Loaded before the display manager: until then simpledrm is card0, and
+# SDDM's X server can crash probing it.
 nvidia_drm
+"""
+
+# Turing laptops power off the idle GPU (runtime D3) only when asked.
+[[file]]
+path = "/etc/modprobe.d/dovy-nvidia-power.conf"
+content = """
+# GPU off when idle. On a desktop, comment this out to keep it on.
+options nvidia NVreg_DynamicPowerManagement=0x02
 """

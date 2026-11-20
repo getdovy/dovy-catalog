@@ -9,8 +9,7 @@ debian = [13]
 url = "https://dl.discordapp.net/apps/linux/1.0.169/discord-1.0.169.deb"
 sha256 = "64d39ef66390149c09ec7d20759a2e4aa0b93efc071d073e3e72155eb86639df"
 
-# Discord's postinst also deletes caches in every home folder (1.6); kept:
-# the AppArmor profile and the desktop entry's handlers.
+# Vendor postinst without deleting caches in every home folder.
 [scripts]
 postinst = """
 #!/bin/sh

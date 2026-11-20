@@ -1,5 +1,5 @@
 name = "scx-tools"
-description = "scx_loader D-Bus service, scxctl and scxtui, to start and switch sched_ext schedulers"
+description = "scx_loader, scxctl and scxtui, to start and switch sched_ext schedulers"
 kind = "upstream-binary"
 version = "1.1.3"
 maintainer = "hmwassim"

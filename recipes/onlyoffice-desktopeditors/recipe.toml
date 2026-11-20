@@ -5,11 +5,10 @@ version = "10.0.0"
 maintainer = "hmwassim"
 debian = [13]
 repository = "onlyoffice"
-# After its own: libraries the vendor's Depends miss.
+# Libraries the vendor's Depends miss.
 packages = ["onlyoffice-desktopeditors", "libnspr4", "libnss3"]
 
-# The vendor's postrm without deleting folders in users' homes (1.6); those
-# stay as per-user leftovers.
+# Vendor postrm without deleting folders in users' homes.
 [scripts]
 postrm = """
 #!/bin/sh

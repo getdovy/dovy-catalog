@@ -33,10 +33,11 @@ KINDS = {  # fields each kind may carry beyond COMMON
     "vendor-repository": {"repository", "packages", "scripts"},
     "testing-rebuild": {"source-package", "source", "packages"},
     "setup": {"packages", "backports", "file", "scripts"},
-    "bundle": {"members"},
+    "bundle": {"members", "packages"},
+    "local-build": {"local", "build-depends", "packages"},
 }
-BUILDS = {"upstream-build", "testing-rebuild"}  # build.sh: required, allowed
-OWN_NAME = {"upstream-build", "upstream-binary", "testing-rebuild"}  # package named after the recipe
+BUILDS = {"upstream-build", "testing-rebuild", "local-build"}  # build.sh: required, allowed
+OWN_NAME = {"upstream-build", "upstream-binary", "testing-rebuild", "local-build"}  # package named after the recipe
 REPO_FIELDS = {"name", "uri", "suite", "components", "key-url", "fingerprints", "maintainer", "file", "pin", "repack"}
 
 
@@ -121,8 +122,25 @@ def recipe(name, r, has_build, problems):
         if not ok:
             bad(f"file {p}: only " + ("/etc/default/<name>" if kind == "upstream-binary" else "drop-ins under /etc/**/*.d/"))
 
-    if kind in BUILDS and kind == "upstream-build" and not has_build:
-        bad("upstream-build needs build.sh")
+    if kind in ("upstream-build", "local-build") and not has_build:
+        bad(f"{kind} needs build.sh")
+    if kind == "local-build":
+        loc = r.get("local")
+        if not isinstance(loc, dict):
+            bad("local-build needs [local]")
+        else:
+            for f in sorted(set(loc) - {"path", "match"}):
+                bad(f"local: unknown field {f}")
+            rel = loc.get("path", "")[2:] if loc.get("path", "").startswith("~/") else ""
+            if not rel or rel.startswith("/") or ".." in rel.split("/") or rel.rstrip("/") != rel:
+                bad(f"local path {loc.get('path')!r}: a folder under the home, ~/...")
+            if not loc.get("match"):
+                bad("local: match names the files taken")
+            for m in loc.get("match", []):
+                if not m or "/" in m:
+                    bad(f"local match {m!r}: a file name pattern")
+        if r.get("network"):
+            bad("network: a local-build runs without the network")
     if has_build and kind not in BUILDS:
         bad(f"build.sh: not used by kind {kind}")
     if kind in ("upstream-build", "upstream-binary") and not r.get("source"):

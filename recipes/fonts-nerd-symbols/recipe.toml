@@ -1,5 +1,5 @@
 name = "fonts-nerd-symbols"
-description = "Nerd Fonts icons for any monospace font (Symbols Only, with fontconfig fallback), and JetBrains Mono"
+description = "Nerd Fonts icons as fallback for monospace fonts, and JetBrains Mono"
 kind = "upstream-binary"
 version = "3.5.1"
 maintainer = "hmwassim"

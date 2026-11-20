@@ -7,9 +7,8 @@ debian = [13]
 repository = "opera"
 packages = ["opera-gx-stable"]
 
-# Opera's postinst, without the cron job, keys and source (ADR 0014).
-# Opera's prerm (alternatives) and postrm are kept; its debconf question
-# about adding a source goes with config and templates.
+# Vendor postinst without the cron job, keys and source; prerm and postrm
+# kept, the debconf question about a source dropped.
 [scripts]
 postinst = """
 #!/bin/sh

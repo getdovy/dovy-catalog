@@ -1,8 +1,8 @@
 name = "yad"
 description = "Dialogs for shell scripts"
 kind = "upstream-build"
-# Held at 14.2: SteamTinkerLaunch, installable from ProtonUp-Qt and ProtonPlus,
-# fails on YAD 15.0 (its issues #1320, #1322). Debian 13 has 0.40.
+# Held at 14.2: SteamTinkerLaunch fails on YAD 15.0 (its issues #1320,
+# #1322). Debian 13 has 0.40.
 version = "14.2"
 maintainer = "hmwassim"
 debian = [13]

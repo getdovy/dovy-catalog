@@ -1,16 +1,13 @@
 name = "git-credential-manager"
-description = "Git Credential Manager: browser sign-in for GitHub, GitLab, Bitbucket, Azure DevOps; credentials in the desktop keyring"
+description = "Git Credential Manager: browser sign-in, credentials in the keyring"
 kind = "upstream-binary"
 version = "3.0.2"
 maintainer = "hmwassim"
 debian = [13]
-# The desktop keyring (secretservice) and .NET's text handling.
 packages = ["libsecret-1-0", "libicu76"]
-# Per user: Git's helper set to it, with the desktop keyring as store.
 user-notes = "/usr/lib/git-credential-manager/git-credential-manager configure && git config --global credential.credentialStore secretservice"
 
-# The upstream .deb installs into /usr/local; the tarball has the same
-# files. The program loads its libraries from its own folder.
+# The tarball, as the upstream .deb installs into /usr/local.
 [[source]]
 url = "https://github.com/git-ecosystem/git-credential-manager/releases/download/v3.0.2/gcm-linux-x64-3.0.2.tar.gz"
 sha256 = "b8e59e22a830006ca4d93e34513effbb2d9fc0c45d9ccf40395eaab7c4c1b97e"

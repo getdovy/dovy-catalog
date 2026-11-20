@@ -1,3 +1,3 @@
 # The oldest dovy that can read this release. Raised only when a recipe
 # needs a newer dovy, after that dovy has shipped in an earlier release.
-dovy = "1.0.0"
+dovy = "1.1.0"

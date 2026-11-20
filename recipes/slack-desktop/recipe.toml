@@ -9,8 +9,7 @@ debian = [13]
 url = "https://downloads.slack-edge.com/desktop-releases/linux/x64/4.53.287/slack-desktop-4.53.287-amd64.deb"
 sha256 = "c2057f221e41275b7eadc5b658edc00289466b6fb55c912c5894831f6900f969"
 
-# Slack's /etc/cron.daily/slack puts Slack's keys in trusted.gpg.d and adds
-# its own apt source unless this file switches it off.
+# Stops Slack's daily cron job from adding its keys and apt source.
 [[file]]
 path = "/etc/default/slack"
 content = """

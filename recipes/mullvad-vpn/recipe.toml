@@ -5,11 +5,10 @@ version = "2026.5"
 maintainer = "hmwassim"
 debian = [13]
 repository = "mullvad"
-# After its own: libraries the vendor's Depends miss.
+# Libraries the vendor's Depends miss.
 packages = ["mullvad-vpn", "libasound2t64", "libgbm1", "libnspr4", "libnss3"]
 
-# The vendor's postrm without deleting folders in users' homes (1.6); those
-# stay as per-user leftovers.
+# Vendor postrm without deleting folders in users' homes.
 [scripts]
 postrm = """
 #!/bin/bash

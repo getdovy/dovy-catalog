@@ -1,5 +1,5 @@
 name = "docker-ce"
-description = "Docker CE from Docker's repository, with Compose and Buildx; the docker group is equivalent to root"
+description = "Docker CE from Docker's repository, with Compose and Buildx"
 kind = "vendor-repository"
 version = "1"
 maintainer = "hmwassim"
@@ -9,4 +9,5 @@ conflicts = ["docker"]
 replaces = ["docker.io", "docker-cli", "containerd", "runc", "docker-compose", "docker-buildx"]
 repository = "docker"
 packages = ["docker-ce", "docker-ce-cli", "containerd.io", "docker-buildx-plugin", "docker-compose-plugin"]
+# The docker group is equivalent to root.
 user-notes = "sudo usermod -aG docker \"$USER\""

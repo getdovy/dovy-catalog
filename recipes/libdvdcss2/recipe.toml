@@ -1,0 +1,11 @@
+name = "libdvdcss2"
+description = "libdvdcss from VideoLAN, for playing encrypted DVDs"
+kind = "upstream-build"
+version = "1.6.0"
+maintainer = "hmwassim"
+debian = [13]
+build-depends = ["meson", "ninja-build", "pkgconf"]
+
+[[source]]
+url = "https://download.videolan.org/pub/libdvdcss/1.6.0/libdvdcss-1.6.0.tar.xz"
+sha256 = "7ea556c846b7bfc32d47b41cae56d1863a6b6d5f706bb162778d6f298490977c"
