@@ -1,8 +1,8 @@
 name = "config-bash"
-description = "Bash defaults: larger history, completion, fzf, zoxide and starship when installed"
+description = "Bash defaults: history, completion and shell tool integration"
 kind = "setup"
 version = "1"
-revision = 2
+revision = 3
 maintainer = "hmwassim"
 debian = [13]
 packages = ["bash-completion"]
@@ -11,17 +11,23 @@ user-notes = "grep -qxF '[ -r /etc/dovy/bashrc.d/00-dovy.sh ] && . /etc/dovy/bas
 [[file]]
 path = "/etc/dovy/bashrc.d/00-dovy.sh"
 content = """
-# History: larger, without duplicates, appended rather than overwritten,
-# and written after every command so no terminal loses it.
+# History written after every command, so no terminal loses it.
 HISTSIZE=10000
 HISTFILESIZE=20000
 HISTCONTROL=ignoreboth:erasedups
 shopt -s histappend
 PROMPT_COMMAND="history -a${PROMPT_COMMAND:+; $PROMPT_COMMAND}"
-# Line wrapping follows window resizes.
 shopt -s checkwinsize
-# Shell integration for tools installed with dovy, when present.
 command -v fzf >/dev/null && eval "$(fzf --bash)"
 command -v zoxide >/dev/null && eval "$(zoxide init bash)"
-command -v starship >/dev/null && eval "$(starship init bash)"
+# Not on the Linux console: it cannot show starship's symbols.
+[ "$TERM" = linux ] || { command -v starship >/dev/null && eval "$(starship init bash)"; }
+case $- in *i*) bind 'set completion-ignore-case on' ;; esac
+if command -v eza >/dev/null; then
+	alias ls='eza -al --icons --color=auto --group-directories-first'
+	alias la='eza -a --icons --color=auto --group-directories-first'
+	alias ll='eza -l --icons --color=auto --group-directories-first'
+	alias lt='eza -aT --icons --color=auto --group-directories-first'
+fi
+command -v batcat >/dev/null && alias cat='batcat --style=plain --paging=never'
 """
