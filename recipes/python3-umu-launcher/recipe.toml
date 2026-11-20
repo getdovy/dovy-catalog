@@ -1,0 +1,16 @@
+name = "python3-umu-launcher"
+description = "umu-run: Windows games with Proton outside Steam"
+kind = "upstream-binary"
+version = "1.4.4"
+maintainer = "hmwassim"
+debian = [13]
+requires = ["i386"]
+
+[[source]]
+url = "https://github.com/Open-Wine-Components/umu-launcher/releases/download/1.4.4/python3-umu-launcher_1.4.4-1_amd64_debian-13.deb"
+sha256 = "602c4ac7210a54b835530f927b10c2781e51e294b1cf46448006e48fae66f232"
+
+# The vendor's scripts only restart AppArmor, for a profile it does not ship.
+[scripts]
+postinst = ""
+postrm = ""

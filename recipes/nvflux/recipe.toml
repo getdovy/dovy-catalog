@@ -1,0 +1,51 @@
+name = "nvflux"
+description = "nvflux: locks NVIDIA GPU clocks against HDMI crackle, flicker and lag"
+kind = "upstream-build"
+version = "1.0.0"
+maintainer = "hmwassim"
+debian = [13]
+depends = ["nvidia"]
+user-notes = "sudo usermod -aG nvflux \"$USER\""
+
+[[source]]
+url = "https://github.com/hmwassim/nvflux/archive/refs/tags/v1.0.0.tar.gz"
+sha256 = "4d4d685da0839e4173512ff49f399f28ac524ed5007119db617482e90c0ed80f"
+
+# As nvflux's install.sh: nvflux group, setuid 4750, boot and sleep units.
+[scripts]
+postinst = """
+#!/bin/sh
+set -e
+if [ "$1" = configure ]; then
+	getent group nvflux >/dev/null || groupadd -r nvflux
+	dpkg-statoverride --list /usr/bin/nvflux >/dev/null ||
+		dpkg-statoverride --update --add root nvflux 4750 /usr/bin/nvflux
+	if [ -d /run/systemd/system ]; then
+		systemctl daemon-reload
+		systemctl enable --quiet nvflux-reload.service nvflux-suspend.service nvflux-resume.service
+	fi
+fi
+"""
+prerm = """
+#!/bin/sh
+set -e
+if [ "$1" = remove ]; then
+	/usr/bin/nvflux off >/dev/null 2>&1 || true
+	if [ -d /run/systemd/system ]; then
+		systemctl disable --quiet nvflux-reload.service nvflux-suspend.service nvflux-resume.service || true
+	fi
+fi
+"""
+postrm = """
+#!/bin/sh
+set -e
+case "$1" in
+remove | purge)
+	dpkg-statoverride --remove /usr/bin/nvflux 2>/dev/null || true
+	[ ! -d /run/systemd/system ] || systemctl daemon-reload
+	;;
+esac
+if [ "$1" = purge ]; then
+	rm -rf /var/lib/nvflux
+fi
+"""
