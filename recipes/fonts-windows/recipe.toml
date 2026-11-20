@@ -1,0 +1,14 @@
+name = "fonts-windows"
+description = "Windows fonts from ~/Downloads/fonts-ms, packaged"
+kind = "local-build"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+depends = ["fonts-ms"]
+build-depends = ["fontconfig", "libharfbuzz-bin"]
+packages = ["fonts-vazirmatn-variable"]
+# Copy C:\Windows\Fonts there; fonts added later come with dovy upgrade.
+
+[local]
+path = "~/Downloads/fonts-ms"
+match = ["*.ttf", "*.ttc", "*.otf"]

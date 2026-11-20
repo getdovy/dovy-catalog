@@ -1,295 +1,140 @@
 name = "fonts-ms"
-description = "Microsoft core fonts; Arabic in Microsoft fonts drawn by Vazirmatn, also in Windows fonts copied to ~/.local/share/fonts"
+description = "Microsoft core fonts, with metric-compatible stand-ins"
 kind = "setup"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
-# ttf-mscorefonts-installer is in contrib; it downloads the fonts and asks
-# for Microsoft's EULA.
+# ttf-mscorefonts-installer is in contrib and asks for Microsoft's EULA.
 requires = ["components"]
+# fonts-noto has the stand-ins, ordered before Vazirmatn for Arabic.
+depends = ["fonts-noto"]
 packages = ["ttf-mscorefonts-installer", "fonts-vazirmatn-variable"]
-# Fonts already in ~/.local/share/fonts were read before this rule: the
-# user's font cache is made again.
-user-notes = "fc-cache -f"
 
 [[file]]
 path = "/etc/fonts/conf.d/52-dovy-fonts-ms.conf"
 content = """
 <?xml version="1.0"?>
 <!DOCTYPE fontconfig SYSTEM "urn:fontconfig:fonts.dtd">
-<!-- Microsoft fonts, wherever installed (system or ~/.local/share/fonts):
-     outlines instead of embedded bitmaps; Arabic drawn by Vazirmatn.
-     One block per family: a test takes one value. -->
 <fontconfig>
-  <!-- These have Arabic, much smaller than their Latin: it is taken out
-       of what fontconfig sees; the files are not changed. -->
+  <!-- Debian's Arial, Times New Roman and Courier New are 1990s versions
+       with small Arabic. Arimo, Tinos and Cousine have the same widths and
+       take their place; Windows' own copies (fonts-windows) are used when
+       installed. The rest of the core fonts stay. -->
+  <selectfont>
+    <rejectfont>
+      <glob>/usr/share/fonts/truetype/msttcorefonts/Arial.ttf</glob>
+      <glob>/usr/share/fonts/truetype/msttcorefonts/Arial_Bold*.ttf</glob>
+      <glob>/usr/share/fonts/truetype/msttcorefonts/Arial_Italic.ttf</glob>
+      <glob>/usr/share/fonts/truetype/msttcorefonts/arial*.ttf</glob>
+      <glob>/usr/share/fonts/truetype/msttcorefonts/Times_New_Roman*.ttf</glob>
+      <glob>/usr/share/fonts/truetype/msttcorefonts/times*.ttf</glob>
+      <glob>/usr/share/fonts/truetype/msttcorefonts/Courier_New*.ttf</glob>
+      <glob>/usr/share/fonts/truetype/msttcorefonts/cour*.ttf</glob>
+    </rejectfont>
+  </selectfont>
+
+  <!-- Aptos Display also calls itself Aptos, so plain Aptos could pick it. -->
+  <match target="scan">
+    <test name="family"><string>Aptos Display</string></test>
+    <edit name="family" mode="assign_replace"><string>Aptos Display</string></edit>
+  </match>
+
+  <!-- Outlines, not the blocky bitmaps some of these carry for small sizes. -->
   <match target="font">
     <test name="family"><string>Arial</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <match target="scan">
-    <test name="family"><string>Arial</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Arial</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
   <match target="font">
     <test name="family"><string>Times New Roman</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <match target="scan">
-    <test name="family"><string>Times New Roman</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Times New Roman</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
   <match target="font">
     <test name="family"><string>Courier New</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <match target="scan">
-    <test name="family"><string>Courier New</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Courier New</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
-  <match target="font">
-    <test name="family"><string>Tahoma</string></test>
-    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
-  </match>
-  <match target="scan">
-    <test name="family"><string>Tahoma</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Tahoma</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
   <match target="font">
     <test name="family"><string>Calibri</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <match target="scan">
-    <test name="family"><string>Calibri</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Calibri</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
-  <match target="font">
-    <test name="family"><string>Segoe UI</string></test>
-    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
-  </match>
-  <match target="scan">
-    <test name="family"><string>Segoe UI</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
-  </match>
-  <alias>
-    <family>Segoe UI</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
   <match target="font">
     <test name="family"><string>Microsoft Sans Serif</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <match target="scan">
-    <test name="family"><string>Microsoft Sans Serif</string></test>
-    <edit name="charset" mode="assign">
-      <minus>
-        <name>charset</name>
-        <charset>
-          <range><int>0x0600</int><int>0x06FF</int></range>
-          <range><int>0x0750</int><int>0x077F</int></range>
-          <range><int>0x0870</int><int>0x08FF</int></range>
-          <range><int>0xFB50</int><int>0xFDFF</int></range>
-          <range><int>0xFE70</int><int>0xFEFF</int></range>
-        </charset>
-      </minus>
-    </edit>
-    <edit name="lang" mode="assign">
-      <minus>
-        <name>lang</name>
-        <langset><string>ar</string><string>fa</string><string>ur</string></langset>
-      </minus>
-    </edit>
+  <match target="font">
+    <test name="family"><string>Tahoma</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <alias>
-    <family>Microsoft Sans Serif</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
-  <!-- These have no Arabic. -->
+  <match target="font">
+    <test name="family"><string>Segoe UI</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
   <match target="font">
     <test name="family"><string>Verdana</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <alias>
-    <family>Verdana</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
   <match target="font">
     <test name="family"><string>Georgia</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <alias>
-    <family>Georgia</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
   <match target="font">
     <test name="family"><string>Trebuchet MS</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <alias>
-    <family>Trebuchet MS</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
+  <match target="font">
+    <test name="family"><string>Comic Sans MS</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
+  <match target="font">
+    <test name="family"><string>Impact</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
   <match target="font">
     <test name="family"><string>Cambria</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <alias>
-    <family>Cambria</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
   <match target="font">
     <test name="family"><string>Candara</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <alias>
-    <family>Candara</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
   <match target="font">
     <test name="family"><string>Consolas</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <alias>
-    <family>Consolas</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
   <match target="font">
     <test name="family"><string>Constantia</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <alias>
-    <family>Constantia</family>
-    <accept><family>Vazirmatn</family></accept>
-  </alias>
   <match target="font">
     <test name="family"><string>Corbel</string></test>
     <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
   </match>
-  <alias>
-    <family>Corbel</family>
-    <accept><family>Vazirmatn</family></accept>
+  <match target="font">
+    <test name="family"><string>Aptos</string></test>
+    <edit name="embeddedbitmap" mode="assign"><bool>false</bool></edit>
+  </match>
+
+  <!-- Their Arabic: fonts-windows takes out the too-small Arabic of
+       Arial, Times New Roman, Courier New, Calibri, Microsoft Sans Serif,
+       Tahoma and Segoe UI. Vazirmatn then draws it, through fonts-noto's
+       rules: it follows Arimo, Tinos, Carlito and Caladea, which follow
+       these names. Naming Vazirmatn here would put it ahead of them. -->
+
+  <!-- Windows programs under Wine ask for these dialog fonts. -->
+  <alias binding="same">
+    <family>MS Shell Dlg</family>
+    <accept><family>Microsoft Sans Serif</family></accept>
+    <default><family>sans-serif</family></default>
+  </alias>
+  <alias binding="same">
+    <family>MS Shell Dlg 2</family>
+    <accept><family>Tahoma</family></accept>
+    <default><family>sans-serif</family></default>
+  </alias>
+  <alias binding="same">
+    <family>MS Sans Serif</family>
+    <prefer><family>Microsoft Sans Serif</family></prefer>
+    <default><family>sans-serif</family></default>
   </alias>
 </fontconfig>
 """
