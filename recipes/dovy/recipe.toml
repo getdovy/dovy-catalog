@@ -1,12 +1,12 @@
 name = "dovy"
 description = "Installs software Debian stable lacks, from signed recipes"
 kind = "upstream-binary"
-version = "1.0.4"
+version = "1.1.0"
 maintainer = "hmwassim"
 debian = [13]
 
-# dovy's own release. Only fields dovy 1.0.0 knows, for ever (ADR 0023):
-# every dovy must be able to read the recipe that upgrades it.
+# Only fields dovy 1.0.0 knows: every dovy must be able to read the recipe
+# that upgrades it.
 [[source]]
-url = "https://github.com/getdovy/dovy/releases/download/v1.0.4/dovy_1.0.4_amd64.deb"
-sha256 = "15aeaada1c5d6c9f60bbfa0d1fcf9421d56f029f6b0a46381fd23bb0edaedd48"
+url = "https://github.com/getdovy/dovy/releases/download/v1.1.0/dovy_1.1.0_amd64.deb"
+sha256 = "aaf263924167cfc4ffe9c71ee4374c6b731b0d51aa944f9e8f31d6867b4e9f79"
