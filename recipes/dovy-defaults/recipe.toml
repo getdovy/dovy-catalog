@@ -1,7 +1,8 @@
 name = "dovy-defaults"
-description = "System baseline: kernel, firmware and Mesa from backports, zram, audio, power, tools"
+description = "System baseline: backports kernel and Mesa, audio, codecs, fonts, tools"
 kind = "bundle"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
-members = ["kernel-backports", "firmware-backports", "mesa-backports", "zram", "config-pipewire", "power-profiles", "archivers", "cli-tools", "config-bash", "config-system"]
+members = ["kernel-backports", "firmware-backports", "mesa-backports", "zram", "config-pipewire", "power-profiles", "multimedia-codecs", "fonts-noto", "archivers", "cli-tools", "cli-base", "config-bash", "config-system"]

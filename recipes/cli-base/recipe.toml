@@ -1,0 +1,12 @@
+name = "cli-base"
+description = "Everyday command-line tools from Debian"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = [
+  "git", "curl", "wget", "jq", "vim", "tree", "gnupg", "inotify-tools", "libarchive-tools", "brotli", "attr", "ncal", "libnotify-bin",
+  "lm-sensors", "smartmontools", "nvme-cli", "gdisk", "inxi", "ddcutil", "rfkill",
+  "vulkan-tools", "vainfo", "vdpauinfo", "nvtop",
+  "bind9-dnsutils",
+]

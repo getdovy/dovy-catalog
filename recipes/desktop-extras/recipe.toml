@@ -1,0 +1,7 @@
+name = "desktop-extras"
+description = "Desktop extras: Papirus icons, network shares, Windows discovery"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["papirus-icon-theme", "gvfs-backends", "wsdd2"]

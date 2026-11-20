@@ -1,8 +1,9 @@
 name = "archivers"
-description = "Archive tools: 7z, RAR, zip and zstd"
+description = "Archive tools: 7z, RAR, zip, zstd and more"
 kind = "setup"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
 requires = ["components"]
-packages = ["7zip", "7zip-rar", "zip", "unzip", "zstd"]
+packages = ["7zip", "7zip-rar", "zip", "unzip", "zstd", "lz4", "lzip", "arj", "unar"]

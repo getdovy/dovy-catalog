@@ -1,0 +1,19 @@
+name = "multimedia-codecs"
+description = "Codecs and players: FFmpeg, GStreamer, mpv, VLC, hardware decoding"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+requires = ["components"]
+conflicts = ["codecs"]
+# The non-free Intel driver replaces the free one; it comes back on removal.
+replaces = ["intel-media-va-driver"]
+depends = ["libdvdcss2"]
+packages = [
+  "ffmpeg", "gstreamer1.0-libav", "gstreamer1.0-plugins-bad", "gstreamer1.0-plugins-ugly", "intel-media-va-driver-non-free",
+  "mpv", "vlc",
+  "lame", "x264", "x265", "opus-tools", "flac", "webp", "mpg123", "flvmeta", "giflib-tools", "mjpegtools", "smpeg-plaympeg",
+  "libheif-plugin-ffmpegdec", "libheif-plugin-jpegdec", "libheif-plugin-jpegenc", "libheif-plugin-rav1e",
+  "pipewire-jack", "pipewire-v4l2", "gstreamer1.0-pipewire", "gstreamer1.0-tools", "libcanberra-pulse",
+  "alsa-utils", "alsa-tools", "alsa-firmware-loaders",
+]

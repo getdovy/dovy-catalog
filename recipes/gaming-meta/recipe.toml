@@ -1,0 +1,15 @@
+name = "gaming-meta"
+description = "Gaming base: Steam, Wine, GameMode, MangoHud and game libraries"
+kind = "bundle"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+# Launchers (Lutris, Heroic, Faugus) are separate recipes.
+members = ["steam", "wine", "gamemode", "mangohud", "gamescope", "goverlay"]
+packages = [
+  "libsdl2-gfx-1.0-0", "libsdl2-image-2.0-0", "libsdl2-mixer-2.0-0", "libsdl2-net-2.0-0", "libglfw3",
+  "libglfw3:i386", "libosmesa6", "libosmesa6:i386", "libgtk-3-0t64", "libopenal1", "libturbojpeg0",
+  "libturbojpeg0:i386", "libgif7", "libgif7:i386", "libxslt1.1", "libasound2-plugins", "libasound2-plugins:i386",
+  "gstreamer1.0-libav:i386", "gstreamer1.0-plugins-bad:i386", "gstreamer1.0-plugins-ugly:i386",
+  "gvfs:i386", "steam-devices", "schedtool", "fonts-liberation2", "fonts-wqy-zenhei", "xfonts-base",
+]
