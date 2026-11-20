@@ -2,10 +2,13 @@ name = "firmware-backports"
 description = "Common hardware firmware from Debian backports"
 kind = "setup"
 version = "1"
+revision = 2
 maintainer = "hmwassim"
 debian = [13]
 requires = ["components"]
 conflicts = ["firmware"]
+# Not in backports, so from stable.
+depends = ["firmware-sof", "microcode"]
 backports = true
 packages = [
   "firmware-misc-nonfree",
@@ -17,4 +20,6 @@ packages = [
   "firmware-mediatek",
   "firmware-brcm80211",
   "firmware-intel-sound",
+  "firmware-cirrus",
+  "firmware-nvidia-graphics",
 ]

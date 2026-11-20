@@ -1,0 +1,9 @@
+name = "firmware-sof"
+description = "Sound Open Firmware, for the audio of recent Intel laptops"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+# Not in backports, so firmware-backports depends on this recipe.
+requires = ["components"]
+packages = ["firmware-sof-signed"]

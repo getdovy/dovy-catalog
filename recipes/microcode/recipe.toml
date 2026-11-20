@@ -1,0 +1,9 @@
+name = "microcode"
+description = "CPU microcode updates for Intel and AMD, loaded at boot"
+kind = "setup"
+version = "1"
+maintainer = "hmwassim"
+debian = [13]
+# Each loads only on its vendor's CPUs.
+requires = ["components"]
+packages = ["intel-microcode", "amd64-microcode"]
