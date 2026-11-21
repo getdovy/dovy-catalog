@@ -5,6 +5,7 @@ version = "7.3.4"
 maintainer = "hmwassim"
 debian = [13]
 secure-boot = "unsigned-kernel"
+packages = ["libelf1t64"]
 
 [[source]]
 url = "https://github.com/getdovy/dovy-kernel/releases/download/v7.3.4/linux-image_amd64.deb"
