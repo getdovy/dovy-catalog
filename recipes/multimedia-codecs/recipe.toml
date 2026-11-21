@@ -5,7 +5,6 @@ version = "1"
 maintainer = "hmwassim"
 debian = [13]
 requires = ["components"]
-conflicts = ["codecs"]
 # The non-free Intel driver replaces the free one; it comes back on removal.
 replaces = ["intel-media-va-driver"]
 depends = ["libdvdcss2"]
