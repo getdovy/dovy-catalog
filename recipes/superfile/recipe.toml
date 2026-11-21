@@ -1,13 +1,13 @@
 name = "superfile"
 description = "File manager for the terminal (spf)"
 kind = "upstream-binary"
-version = "1.6.0"
+version = "1.6.1"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://github.com/yorukot/superfile/releases/download/v1.6.0/superfile-linux-v1.6.0-amd64.tar.gz"
-sha256 = "d45b0e95072629a6aa7983a84eedca9cd7a98861e67ef91be1415496e3dda309"
+url = "https://github.com/yorukot/superfile/releases/download/v1.6.1/superfile-linux-v1.6.1-amd64.tar.gz"
+sha256 = "2ab6872fee8fb2d6d120503f964cc693cf5ce328afedbe3988729593870c570e"
 
 [install]
-"/usr/bin/spf" = "dist/superfile-linux-v1.6.0-amd64/spf"
+"/usr/bin/spf" = "dist/superfile-linux-v1.6.1-amd64/spf"
