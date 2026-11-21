@@ -1,13 +1,13 @@
 name = "workmux"
 description = "Git worktrees with tmux windows"
 kind = "upstream-binary"
-version = "0.1.282"
+version = "0.1.283"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://github.com/raine/workmux/releases/download/v0.1.282/workmux-linux-amd64.tar.gz"
-sha256 = "f8e304f457a1e0b47c6c3317113d6eb1fcd44df46f233cc836e2615279bb94ee"
+url = "https://github.com/raine/workmux/releases/download/v0.1.283/workmux-linux-amd64.tar.gz"
+sha256 = "f60d5cd6723f2e1566574605475bec6e132ca79e0feaeff35c2409d53e455477"
 
 [install]
 "/usr/bin/workmux" = "workmux"
