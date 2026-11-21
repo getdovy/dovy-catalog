@@ -1,0 +1,12 @@
+name = "breeze-onyx"
+description = "Breeze with a neutral dark palette for Plasma, Qt, GTK, libadwaita and terminals"
+kind = "upstream-build"
+version = "1.0.0"
+maintainer = "hmwassim"
+debian = [13]
+packages = ["gtk2-engines-pixbuf"]
+user-notes = "breeze-onyx apply"
+
+[[source]]
+url = "https://github.com/hmwassim/breeze-onyx/archive/refs/tags/v1.0.0.tar.gz"
+sha256 = "c5ccef735de6a9db19deedd94d57a5e5ceccd4068703ebcae51a75c838fcf53d"
