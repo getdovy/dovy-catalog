@@ -1,13 +1,13 @@
 name = "oh-my-posh"
 description = "Prompt theme engine for any shell"
 kind = "upstream-binary"
-version = "32.1.0"
+version = "33.0.0"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v32.1.0/posh-linux-amd64"
-sha256 = "75d0c69daadd43931a781b36896744a530efff3b769606b9a4cb7e20ab6e7b8b"
+url = "https://github.com/JanDeDobbeleer/oh-my-posh/releases/download/v33.0.0/posh-linux-amd64"
+sha256 = "64e1a53310af1a0f9e0afd0217b5e6b7eb0218ce2e6f0fe592b7d6d594cf4cdf"
 
 [install]
 "/usr/bin/oh-my-posh" = "posh-linux-amd64"
