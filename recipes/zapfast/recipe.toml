@@ -1,10 +1,10 @@
 name = "zapfast"
 description = "WhatsApp desktop client"
 kind = "upstream-binary"
-version = "0.21.2"
+version = "0.21.3"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://github.com/crmne/zapfast/releases/download/v0.21.2/zapfast_0.21.2_amd64.deb"
-sha256 = "9f00da06306fb2afab1519130a629b3db3f9a213656f185936b09053767fd593"
+url = "https://github.com/crmne/zapfast/releases/download/v0.21.3/zapfast_0.21.3_amd64.deb"
+sha256 = "753f20f281c729620576f3f6d4710470cd897cc97f4f8f90d5f8e2d74f53d95c"
