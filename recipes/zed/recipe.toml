@@ -1,14 +1,14 @@
 name = "zed"
 description = "Code editor"
 kind = "upstream-binary"
-version = "1.28.1"
+version = "1.29.3"
 maintainer = "hmwassim"
 debian = [13]
 packages = ["libasound2t64", "libglib2.0-0t64"]
 
 [[source]]
-url = "https://github.com/zed-industries/zed/releases/download/v1.28.1/zed-linux-x86_64.tar.gz"
-sha256 = "9c3fc4cbe533e72c8d0e864a62be2b88d69cc44b9f52cd25d4c21d054dda3742"
+url = "https://github.com/zed-industries/zed/releases/download/v1.29.3/zed-linux-x86_64.tar.gz"
+sha256 = "44b0f350aa7bf4551d1b0aaa2d3b673a6de2c03bc5e979b3592fd2180b4f77c1"
 
 [install]
 "/usr/lib/zed" = "zed.app"

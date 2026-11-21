@@ -1,15 +1,15 @@
 name = "vesktop"
 description = "Discord client with Vencord; screen sharing with audio on Wayland"
 kind = "upstream-binary"
-version = "1.6.9"
+version = "1.7.0"
 maintainer = "hmwassim"
 debian = [13]
 # Electron needs ALSA; the vendor's Depends miss it.
 packages = ["libasound2t64"]
 
 [[source]]
-url = "https://github.com/Vencord/Vesktop/releases/download/v1.6.9/vesktop_1.6.9_amd64.deb"
-sha256 = "8487a3ba56c7cd0bb230c1d6b42373fa0a8a23bab6f0809c903988b4f3e9cefc"
+url = "https://github.com/Vencord/Vesktop/releases/download/v1.7.0/vesktop_1.7.0_amd64.deb"
+sha256 = "ddddd9b50d3075ff2e9f298605fe1a90aec7dc9804ae0bfeea1f55ab7928850d"
 
 # Vendor postinst without its Ubuntu AppArmor profile. No setuid sandbox
 # helper: Debian allows user namespaces.

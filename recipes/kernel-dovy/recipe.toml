@@ -1,15 +1,16 @@
 name = "kernel-dovy"
 description = "Debian's backports kernel tuned for performance, with sched_ext patches"
 kind = "upstream-binary"
-version = "7.2.12"
+version = "7.3.4"
 maintainer = "hmwassim"
 debian = [13]
 secure-boot = "unsigned-kernel"
+packages = ["libelf1t64"]
 
 [[source]]
-url = "https://github.com/getdovy/dovy-kernel/releases/download/v7.2.12/linux-image_amd64.deb"
-sha256 = "f08d26ecd5e609c2ee8b26744cf63d4692a26533de7ccea97960b112b14aeca5"
+url = "https://github.com/getdovy/dovy-kernel/releases/download/v7.3.4/linux-image_amd64.deb"
+sha256 = "23cf2e2222a74183d7d49e10e807f6b52799ce0e5d34f2053005964f1a949646"
 
 [[source]]
-url = "https://github.com/getdovy/dovy-kernel/releases/download/v7.2.12/linux-headers_amd64.deb"
-sha256 = "7dd1d6e850cc9dcd9cf0b229fbc1758d87e0643e7fdaed93e7f6b20d92e52fd8"
+url = "https://github.com/getdovy/dovy-kernel/releases/download/v7.3.4/linux-headers_amd64.deb"
+sha256 = "1abacc0f19097cce8d291187364fb82a275d3fcaf780ff4d773fb3bb8c2d4575"

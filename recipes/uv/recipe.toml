@@ -1,13 +1,13 @@
 name = "uv"
 description = "Python package and project manager"
 kind = "upstream-binary"
-version = "0.13.8"
+version = "0.13.9"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://github.com/astral-sh/uv/releases/download/0.13.8/uv-x86_64-unknown-linux-musl.tar.gz"
-sha256 = "61fb26dabc4f0cf1d050fc6c67d40e43e4fae2994af21ebc1e050b233bf2b5ed"
+url = "https://github.com/astral-sh/uv/releases/download/0.13.9/uv-x86_64-unknown-linux-musl.tar.gz"
+sha256 = "58ccf5f1792b8a5a88d01bc910ea131a8b3db4a319a17ad5fad75e0845a3e271"
 
 [install]
 "/usr/bin/uv" = "uv-x86_64-unknown-linux-musl/uv"
