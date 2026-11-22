@@ -1,7 +1,7 @@
 name = "protontricks"
 description = "Run winetricks in a Proton game's prefix"
 kind = "upstream-build"
-version = "1.15.0"
+version = "1.15.1"
 maintainer = "hmwassim"
 debian = [13]
 # winetricks is in contrib.
@@ -10,5 +10,5 @@ build-depends = ["python3-pip", "python3-setuptools", "python3-setuptools-scm", 
 packages = ["python3-vdf", "python3-pil", "winetricks", "yad"]
 
 [[source]]
-url = "https://github.com/Matoking/protontricks/archive/refs/tags/1.15.0.tar.gz"
-sha256 = "5cedc277173723dffa368a9f0d9ac7756a2ad74d558d3b23e2bb0af470304937"
+url = "https://github.com/Matoking/protontricks/archive/refs/tags/1.15.1.tar.gz"
+sha256 = "d9c9da9e608780a8cf0aa388ae482af4813ef7e2d975db2747041edd869a63bd"
