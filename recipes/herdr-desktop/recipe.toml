@@ -1,14 +1,14 @@
 name = "herdr-desktop"
 description = "Herdr desktop app"
 kind = "upstream-binary"
-version = "0.1.16"
+version = "0.1.17"
 maintainer = "hmwassim"
 debian = [13]
 packages = ["libxcb1", "libxkbcommon0"]
 
 [[source]]
-url = "https://releases.herdr.dev/app/0.1.16/herdr-app-linux-x86_64.tar.gz"
-sha256 = "282d2632196b238206cfe66bfb61c0faf299ca1c91843bd076521bbe36571216"
+url = "https://releases.herdr.dev/app/0.1.17/herdr-app-linux-x86_64.tar.gz"
+sha256 = "2188f4d7d5cf041450dbdbf2e14649244b1a6274a1080bdd97fa7bc450e65ca1"
 
 [install]
 "/usr/lib/herdr-app" = "herdr-app"
