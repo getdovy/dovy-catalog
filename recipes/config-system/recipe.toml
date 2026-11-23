@@ -2,7 +2,7 @@ name = "config-system"
 description = "System tuning for disks, memory, shutdown and logs"
 kind = "setup"
 version = "1"
-revision = 3
+revision = 4
 maintainer = "hmwassim"
 debian = [13]
 packages = ["hdparm"]
@@ -46,6 +46,15 @@ content = """
 # SATA SSDs keep mq-deadline, NVMe keeps none.
 ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="sd*[!0-9]", ATTR{queue/rotational}=="1", ATTR{queue/scheduler}="bfq"
 ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="mmcblk*[0-9]", ATTR{queue/scheduler}="bfq"
+"""
+
+# USB drives and SD cards: at most 16 MB waiting to be written, so a copy
+# finishes when its data is on the drive, not when it is in memory.
+[[file]]
+path = "/etc/udev/rules.d/70-dovy-usb-writeback.rules"
+content = """
+ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", ENV{ID_BUS}=="usb", ATTR{bdi/strict_limit}="1", ATTR{bdi/max_bytes}="16777216"
+ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="mmcblk*[0-9]", ATTR{bdi/strict_limit}="1", ATTR{bdi/max_bytes}="16777216"
 """
 
 # No head parking or spin-down on desktop and server chassis; laptops and
