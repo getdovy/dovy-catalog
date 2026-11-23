@@ -2,7 +2,7 @@ name = "config-system"
 description = "System tuning for disks, memory, shutdown and logs"
 kind = "setup"
 version = "1"
-revision = 4
+revision = 5
 maintainer = "hmwassim"
 debian = [13]
 packages = ["hdparm"]
@@ -48,13 +48,16 @@ ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="sd*[!0-
 ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="mmcblk*[0-9]", ATTR{queue/scheduler}="bfq"
 """
 
-# USB drives and SD cards: at most 16 MB waiting to be written, so a copy
-# finishes when its data is on the drive, not when it is in memory.
+# USB drives and SD cards: at most 6% of vm.dirty_bytes (about 15 MB)
+# waiting to be written, so a copy finishes when its data is on the drive,
+# not when it is in memory. A ratio, not max_bytes: the kernel stores
+# max_bytes as a ratio of the limit at that moment, and at boot udev runs
+# before sysctl lowers it, which left 680 KB.
 [[file]]
 path = "/etc/udev/rules.d/70-dovy-usb-writeback.rules"
 content = """
-ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", ENV{ID_BUS}=="usb", ATTR{bdi/strict_limit}="1", ATTR{bdi/max_bytes}="16777216"
-ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="mmcblk*[0-9]", ATTR{bdi/strict_limit}="1", ATTR{bdi/max_bytes}="16777216"
+ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", ENV{ID_BUS}=="usb", ATTR{bdi/strict_limit}="1", ATTR{bdi/max_ratio}="6"
+ACTION=="add|change", SUBSYSTEM=="block", ENV{DEVTYPE}=="disk", KERNEL=="mmcblk*[0-9]", ATTR{bdi/strict_limit}="1", ATTR{bdi/max_ratio}="6"
 """
 
 # No head parking or spin-down on desktop and server chassis; laptops and
