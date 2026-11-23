@@ -1,0 +1,10 @@
+name = "github-cli"
+uri = "https://cli.github.com/packages"
+suite = "stable"
+components = ["main"]
+key-url = "https://cli.github.com/packages/githubcli-archive-keyring.gpg"
+fingerprints = ["2C6106201985B60E6C7AC87323F3D4EA75716059", "7F38BBB59D064DBCB3D84D725612B36462313325"]
+maintainer = "hmwassim"
+# Debian has gh too, at 2.46: apt would keep it over a vendor pin at 100.
+# Repacked and served by dovy instead, at 1001.
+repack = true

@@ -1,0 +1,9 @@
+name = "gh"
+description = "GitHub CLI, from GitHub's repository"
+kind = "vendor-repository"
+version = "2.105.0"
+maintainer = "hmwassim"
+debian = [13]
+repository = "github-cli"
+packages = ["gh"]
+replaces = ["gh"]
