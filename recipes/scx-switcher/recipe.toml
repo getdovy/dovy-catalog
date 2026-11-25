@@ -1,11 +1,11 @@
 name = "scx-switcher"
 description = "Window and tray icon to start, stop and switch sched_ext schedulers"
 kind = "upstream-binary"
-version = "3.0.1"
+version = "3.0.2"
 maintainer = "hmwassim"
 debian = [13]
 depends = ["scx-scheds"]
 
 [[source]]
-url = "https://github.com/hmwassim/scx-switcher/releases/download/v3.0.1/scx-switcher_3.0.1-1_amd64.deb"
-sha256 = "cedabf6abaf98ead4b61b079d9dc94ab4bb30fb6243b7c8e4a420a76286d9675"
+url = "https://github.com/hmwassim/scx-switcher/releases/download/v3.0.2/scx-switcher_3.0.2-1_amd64.deb"
+sha256 = "64677c916d90a4fbaaf6671d5d61df5f7b92088345c1cfdc3bc5beafc4a509e9"
