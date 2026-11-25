@@ -1,10 +1,10 @@
 name = "scx-scheds"
-description = "sched_ext CPU schedulers (scx_bpfland, scx_lavd and others) and scxtop"
+description = "sched_ext CPU schedulers (scx_bpfland, scx_lavd and others), scxtop, scxtui and scxcli"
 kind = "upstream-binary"
-version = "1.1.4"
+version = "1.1.5"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://github.com/hmwassim/scx-bundler/releases/download/v1.1.4/scx-scheds_1.1.4-1_amd64.deb"
-sha256 = "874667185efe83cd6653be25de269861abdbba4e8a0ade72169f42ae235738f7"
+url = "https://github.com/hmwassim/scx-scheds/releases/download/v1.1.5-1/scx-scheds_1.1.5-1_amd64.deb"
+sha256 = "42c4e0605e766ad3d2b3c06e1eb8af1189c72ed53ac1b0fb97bb2f2d8ad43dff"
