@@ -1,13 +1,13 @@
 name = "garage"
 description = "S3-compatible object storage for small clusters"
 kind = "upstream-binary"
-version = "2.5.0"
+version = "2.6.0"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://garagehq.deuxfleurs.fr/_releases/v2.5.0/x86_64-unknown-linux-musl/garage"
-sha256 = "2ff667286217cd73ebcb1c03af993822365000441dfe31a80cb64c5189a9dea8"
+url = "https://garagehq.deuxfleurs.fr/_releases/v2.6.0/x86_64-unknown-linux-musl/garage"
+sha256 = "c270bd65431ca32f0b0d5df23bab71e3b64a08517fdf9037968f146ed17c51c7"
 
 [install]
 "/usr/bin/garage" = "garage"
