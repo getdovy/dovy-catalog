@@ -6,5 +6,5 @@ maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://github.com/hmwassim/scx-bundler/releases/download/scx-scheds-v1.1.5-1/scx-scheds_1.1.5-1_amd64.deb"
+url = "https://github.com/hmwassim/scx-scheds/releases/download/v1.1.5-1/scx-scheds_1.1.5-1_amd64.deb"
 sha256 = "42c4e0605e766ad3d2b3c06e1eb8af1189c72ed53ac1b0fb97bb2f2d8ad43dff"
