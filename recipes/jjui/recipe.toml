@@ -1,13 +1,13 @@
 name = "jjui"
 description = "Terminal UI for Jujutsu"
 kind = "upstream-binary"
-version = "0.10.13"
+version = "0.10.14"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://github.com/idursun/jjui/releases/download/v0.10.13/jjui-0.10.13-linux-amd64.zip"
-sha256 = "ae1bc8ba71134a5a280dcf78bb40a840de96e0deebe17856910ea92f617647ba"
+url = "https://github.com/idursun/jjui/releases/download/v0.10.14/jjui-0.10.14-linux-amd64.zip"
+sha256 = "9ba18912b31792387ea1b7cd71689d5f2bd69c9dd3010fd83907d4dfa3bf0654"
 
 [install]
-"/usr/bin/jjui" = "jjui-0.10.13-linux-amd64"
+"/usr/bin/jjui" = "jjui-0.10.14-linux-amd64"

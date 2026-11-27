@@ -1,13 +1,13 @@
 name = "rumdl"
 description = "Markdown linter and formatter"
 kind = "upstream-binary"
-version = "0.3.6"
+version = "0.3.7"
 maintainer = "hmwassim"
 debian = [13]
 
 [[source]]
-url = "https://github.com/rvben/rumdl/releases/download/v0.3.6/rumdl-v0.3.6-x86_64-unknown-linux-musl.tar.gz"
-sha256 = "a50fe06c5a878b81d617cbf1cb98c3c245ebf7fef1fb1463345d85922e7e1c32"
+url = "https://github.com/rvben/rumdl/releases/download/v0.3.7/rumdl-v0.3.7-x86_64-unknown-linux-musl.tar.gz"
+sha256 = "77f22b8408db103e39a226bf803e34ffdfc975550f8f79276b3f39738ec2c3e5"
 
 [install]
 "/usr/bin/rumdl" = "rumdl"
