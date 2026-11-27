@@ -1,15 +1,15 @@
 name = "desktop-plus"
 description = "Desktop Plus, a GitHub Desktop fork with features for power users"
 kind = "upstream-binary"
-version = "3.6.12.0"
+version = "3.7.1.0"
 maintainer = "hmwassim"
 debian = [13]
 # Electron needs ALSA; the vendor's Depends miss it.
 packages = ["libasound2t64"]
 
 [[source]]
-url = "https://github.com/desktop-plus/desktop-plus/releases/download/v3.6.12.0/DesktopPlus-v3.6.12.0-linux-x86_64.deb"
-sha256 = "91ac51e9f338ea4a6d8aa41ddbf547d7437eabc8bb8750955a9a10b8f8a23d87"
+url = "https://github.com/desktop-plus/desktop-plus/releases/download/v3.7.1.0/DesktopPlus-v3.7.1.0-linux-x86_64.deb"
+sha256 = "26b990f0a6fe27f88940db043a9839aa622b925785c1dc2e81da49b1e69e486f"
 
 # The vendor's postrm drops the /usr/bin links on every upgrade; these keep
 # them until removal. No setuid sandbox helper: Debian allows user namespaces.
